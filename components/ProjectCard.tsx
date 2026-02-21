@@ -7,7 +7,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     <MotionDiv
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className="group rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition dark:border-zinc-800 dark:bg-zinc-950"
+      className="group rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur transition hover:bg-white/10"
     >
       <Link href={`/projects/${project.slug}`} className="block">
         <div className="flex items-start justify-between gap-4">

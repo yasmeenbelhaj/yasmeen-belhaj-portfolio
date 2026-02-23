@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import P5Background from "../components/P5Background";
 import ProjectCard from "../components/ProjectCard";
@@ -9,6 +9,54 @@ import { projects } from "../content/projects";
 export default function HomePage() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const projectsTopRef = useRef<HTMLElement | null>(null);
+
+  // Must start false so server + first client render match (prevents hydration mismatch)
+  const [skipIntro, setSkipIntro] = useState(false);
+
+  // NEW: used when clicking "Projects" on the homepage (prevents anchor + transform fighting)
+  const [forceProjectsTop, setForceProjectsTop] = useState(false);
+
+  // Run after hydration but before paint to avoid visible jump when landing on /#projects
+  useLayoutEffect(() => {
+    if (window.location.hash === "#projects") {
+      setSkipIntro(true);
+
+      // After we remove the translate, ensure the anchor lands cleanly
+      requestAnimationFrame(() => {
+        projectsTopRef.current?.scrollIntoView({ block: "start" });
+      });
+    }
+  }, []);
+
+  // NEW: listen for nav event to scroll to Projects reliably (even on first load)
+  useEffect(() => {
+    const handler = () => {
+      // Freeze the Projects transform so scrolling isn't fighting motion transforms
+      setForceProjectsTop(true);
+
+      // Apply freeze first, then scroll
+      requestAnimationFrame(() => {
+        projectsTopRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+
+        // Second frame helps if layout/scroll is still settling
+        requestAnimationFrame(() => {
+          projectsTopRef.current?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+
+          // Re-enable motion after the scroll is underway
+          window.setTimeout(() => setForceProjectsTop(false), 500);
+        });
+      });
+    };
+
+    window.addEventListener("scroll-to-projects", handler);
+    return () => window.removeEventListener("scroll-to-projects", handler);
+  }, []);
 
   // A) Drives hero overlay fade + projects slide (your original behavior)
   const { scrollYProgress: heroProgress } = useScroll({
@@ -22,18 +70,18 @@ export default function HomePage() {
     offset: ["start end", "start start"],
   });
 
-  // Burnt overlay fades in early (back to normal)
+  // Burnt overlay fades in early
   const heroColorFade = useTransform(heroProgress, [0, 0.36], [0, 1]);
 
   // HERO FULL CUT-OFF (instant switch) at Projects reaching top
   const heroOpacity = useTransform(projectsTopProgress, [0.999, 1], [1, 0]);
 
-  // Projects slide up (no fade) (keep as-is for now)
+  // Projects slide up (no fade)
   const projectsY = useTransform(heroProgress, [0, 0.45], [140, 0]);
 
   return (
     <div className="relative">
-      {/* SCROLL REGION (defines overlay + slide timing) */}
+      {/* SCROLL REGION */}
       <div ref={scrollRef} className="relative h-[180svh]">
         {/* FIXED HERO */}
         <motion.section
@@ -68,19 +116,18 @@ export default function HomePage() {
 
         {/* PROJECTS */}
         <motion.section
-          style={{ y: projectsY }}
+          style={{ y: skipIntro || forceProjectsTop ? 0 : projectsY }}
           className="relative z-10 pt-[88svh] sm:pt-[90svh] lg:pt-[92svh]"
         >
-          {/* Put the ref on the ACTUAL black section that visually matters */}
           <section
             id="projects"
             ref={projectsTopRef}
-            className="min-h-[100svh]  bg-black  text-white rounded-t-3xl"
+            className="min-h-[100svh] bg-black text-white rounded-t-3xl"
           >
             <div className="mx-auto max-w-5xl px-6 py-16">
               <header className="max-w-2xl">
                 <h2 className="font-['the-seasons'] font-bold text-5xl tracking-wide">
-                Projects
+                  Projects
                 </h2>
                 <p className="mt-3 text-white/70">
                   Selected work across web development, real-time systems, and

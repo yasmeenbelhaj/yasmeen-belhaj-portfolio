@@ -2,7 +2,7 @@ export default function AboutPage() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
       <header className="max-w-2xl">
-        <h1 className="text-3xl font-semibold tracking-tight">About</h1>
+        <h1 className="font-['the-seasons'] font-bold text-5xl tracking-wide">About</h1>
         <p className="mt-3 text-zinc-600 dark:text-zinc-400">
           Creative Technologist working across web development and interactive,
           real-time AR/XR experiences.

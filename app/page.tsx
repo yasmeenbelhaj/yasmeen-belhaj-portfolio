@@ -73,13 +73,14 @@ export default function HomePage() {
         >
           {/* Put the ref on the ACTUAL black section that visually matters */}
           <section
+            id="projects"
             ref={projectsTopRef}
             className="min-h-[100svh]  bg-black  text-white rounded-t-3xl"
           >
             <div className="mx-auto max-w-5xl px-6 py-16">
               <header className="max-w-2xl">
-                <h2 className="text-3xl font-semibold tracking-tight">
-                  Projects
+                <h2 className="font-['the-seasons'] font-bold text-5xl tracking-wide">
+                Projects
                 </h2>
                 <p className="mt-3 text-white/70">
                   Selected work across web development, real-time systems, and

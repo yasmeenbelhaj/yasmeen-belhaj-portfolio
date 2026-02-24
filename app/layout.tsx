@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { Source_Sans_3 } from "next/font/google";
+import ScrollToTop from "../components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Yasmeen Belhaj",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="min-h-full bg-white font-[var(--font-body)] text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-50">
         <Nav />
         {children}
+        <ScrollToTop/>
         <Footer />
       </body>
     </html>

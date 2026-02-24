@@ -19,7 +19,7 @@ export default async function ProjectDetailPage({
     <main className="mx-auto max-w-5xl px-6 py-16">
       <header className="max-w-3xl">
         <p className="text-sm text-zinc-500 dark:text-zinc-400">{project.year}</p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight">
+        <h1 className="font-['the-seasons'] font-bold text-5xl tracking-wide">
           {project.title}
         </h1>
         <p className="mt-3 text-zinc-600 dark:text-zinc-400">{project.tagline}</p>

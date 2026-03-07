@@ -90,7 +90,7 @@ export default function HomePage() {
             fixed top-0 left-0 w-full
             h-[88svh] sm:h-[90svh] lg:h-[92svh]
             z-0 overflow-hidden pointer-events-none
-            bg-white
+            bg-[#E7E4DE]
           "
         >
           <div className="absolute inset-0">
@@ -110,7 +110,7 @@ export default function HomePage() {
 
           <motion.div
             style={{ opacity: heroColorFade }}
-            className="absolute inset-0 z-20 bg-[#8C3B1E]"
+            className="absolute inset-0 z-20 bg-[#663c1e]"
           />
         </motion.section>
 

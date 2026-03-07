@@ -18,23 +18,30 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   /* ------------------------------
-     Keep hash synced correctly
+     Keep hash synced (safe methods only)
      ------------------------------ */
 
-  // Update hash whenever Next route changes (Next navigation doesn't always fire hashchange)
+  // Sync hash on route changes (works for normal navigations)
   React.useEffect(() => {
     setHash(window.location.hash || "");
     setMobileOpen(false); // close drawer on route change
   }, [pathname]);
 
-  // Update hash on real hash changes
+  // Sync hash on real hash changes and back/forward
   React.useEffect(() => {
     const updateHash = () => setHash(window.location.hash || "");
+    updateHash();
+
     window.addEventListener("hashchange", updateHash);
-    return () => window.removeEventListener("hashchange", updateHash);
+    window.addEventListener("popstate", updateHash);
+
+    return () => {
+      window.removeEventListener("hashchange", updateHash);
+      window.removeEventListener("popstate", updateHash);
+    };
   }, []);
 
-  // Close on Escape for accessibility
+  // Close on Escape
   React.useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileOpen(false);
@@ -54,28 +61,40 @@ export default function Nav() {
   }, [mobileOpen]);
 
   /* ------------------------------
-     Custom Projects scroll handler
+     Click handlers
      ------------------------------ */
 
-  const handleProjectsClick = (
+  const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (href === "/#projects") {
-      if (window.location.pathname === "/") {
-        e.preventDefault();
-        setMobileOpen(false);
+    // If clicking Home while already on "/" but currently at "/#projects",
+    // Next may clear the hash without firing hashchange — so we do it ourselves.
+    if (href === "/" && window.location.pathname === "/" && window.location.hash) {
+      e.preventDefault();
+      setMobileOpen(false);
 
-        // Tell homepage to scroll (your existing architecture)
-        window.dispatchEvent(new Event("scroll-to-projects"));
+      window.history.replaceState(null, "", "/");
+      setHash("");
 
-        // Replace URL without stacking history
-        window.history.replaceState(null, "", "/#projects");
-
-        // Sync underline immediately
-        setHash("#projects");
-      }
+      // Optional: feels nice since "Home" implies top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
     }
+
+    // Your custom Projects behavior (freeze transforms handled by homepage)
+    if (href === "/#projects" && window.location.pathname === "/") {
+      e.preventDefault();
+      setMobileOpen(false);
+
+      window.dispatchEvent(new Event("scroll-to-projects"));
+      window.history.replaceState(null, "", "/#projects");
+      setHash("#projects");
+      return;
+    }
+
+    // Normal navigation: just close the drawer
+    setMobileOpen(false);
   };
 
   /* ------------------------------
@@ -88,19 +107,11 @@ export default function Nav() {
     return pathname === href;
   };
 
-  /* ------------------------------
-     Shared desktop link class builder
-     ------------------------------ */
-
   const desktopLinkClass = (active: boolean) =>
     [
       "relative inline-block text-white/85 transition-colors duration-200 hover:text-white",
-
-      // underline animation
       "after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-200 after:content-['']",
       "hover:after:scale-x-100",
-
-      // active state
       active ? "text-white after:scale-x-100 after:bg-[#8C3B1E]" : "",
     ].join(" ");
 
@@ -110,7 +121,7 @@ export default function Nav() {
         {/* Logo */}
         <Link
           href="/"
-          onClick={() => setMobileOpen(false)}
+          onClick={(e) => handleNavClick(e, "/")}
           className="text-sm font-medium tracking-wide text-white"
         >
           Yasmeen Belhaj
@@ -124,7 +135,7 @@ export default function Nav() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  onClick={(e) => handleProjectsClick(e, l.href)}
+                  onClick={(e) => handleNavClick(e, l.href)}
                   className={desktopLinkClass(active)}
                 >
                   {l.label}
@@ -143,7 +154,6 @@ export default function Nav() {
           aria-controls="mobile-drawer"
           onClick={() => setMobileOpen((v) => !v)}
         >
-          {/* hamburger / X */}
           <span className="relative block h-5 w-6">
             <span
               className={[
@@ -207,7 +217,6 @@ export default function Nav() {
                   </button>
                 </div>
 
-                {/* Menu links (The Seasons, lighter + less chunky) */}
                 <motion.ul
                   className="mt-10 flex flex-col gap-6"
                   initial="hidden"
@@ -232,20 +241,12 @@ export default function Nav() {
                       >
                         <Link
                           href={l.href}
-                          onClick={(e) => {
-                            setMobileOpen(false);
-                            handleProjectsClick(e, l.href);
-                          }}
+                          onClick={(e) => handleNavClick(e, l.href)}
                           className={[
-                            // The Seasons for mobile drawer
-                            "font-['the-seasons'] text-2xl font-bold tracking-wider text-white/90 hover:text-white",
+                            "font-['the-seasons'] text-2xl font-medium tracking-wider text-white/90 hover:text-white",
                             "relative inline-block",
-
-                            // underline animation
                             "after:absolute after:left-0 after:-bottom-3 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-200 after:content-['']",
                             "hover:after:scale-x-100",
-
-                            // active state
                             active
                               ? "text-white after:scale-x-100 after:bg-[#8C3B1E]"
                               : "",

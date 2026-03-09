@@ -23,7 +23,7 @@ export default function P5Background() {
           const canvas = s.createCanvas(getW(), getH());
           canvas.parent(containerRef.current!);
           s.pixelDensity(Math.min(2, window.devicePixelRatio || 1));
-          s.background(231, 228, 222);
+          s.background(244, 235, 221);
         };
 
         s.draw = () => {

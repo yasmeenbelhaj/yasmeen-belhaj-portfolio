@@ -24,18 +24,27 @@ export default function RootLayout({
   return (
     <html lang="en" className={`h-full ${sourceSans.variable}`}>
       <head>
-        {/* Helps Safari connect earlier (optional but good) */}
-        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
-
-        {/* Your Adobe kit (The Seasons) */}
+        <link
+          rel="preconnect"
+          href="https://use.typekit.net"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://p.typekit.net"
+          crossOrigin="anonymous"
+        />
         <link rel="stylesheet" href="https://use.typekit.net/dpt5drr.css" />
       </head>
 
-      <body className="min-h-full bg-white font-[var(--font-body)] text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-50">
+      <body className="flex min-h-screen flex-col bg-brand-black font-[var(--font-body)] text-white antialiased">
         <Nav />
-        {children}
-        <ScrollToTop/>
+
+        <main className="flex-1">
+          {children}
+        </main>
+
+        <ScrollToTop />
         <Footer />
       </body>
     </html>

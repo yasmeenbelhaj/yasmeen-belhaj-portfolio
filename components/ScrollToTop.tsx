@@ -12,39 +12,39 @@ export default function ScrollToTop() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = () =>
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  };
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.button
           onClick={scrollToTop}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
           className="
-            fixed bottom-6 right-6 z-50
-            h-11 w-11
-            rounded-full
-            bg-white backdrop-blur-sm
-            text-[#6f4222]
-            border border-white/20
-            shadow-xl
+            fixed right-6 bottom-6 sm:bottom-24 md:bottom-24
+            z-50
+            h-11 w-11 rounded-full
+            bg-white/55 backdrop-blur-md
+            text-brand-rust
+            border border-brand-sand/40
+            shadow-[0_8px_24px_rgba(0,0,0,0.18)]
             flex items-center justify-center
             transition-colors duration-200
-            hover:bg-[#6f4222]
-            hover:text-white
+            hover:bg-brand-rust hover:text-white
           "
           aria-label="Scroll to top"
         >
@@ -56,11 +56,7 @@ export default function ScrollToTop() {
             stroke="currentColor"
             strokeWidth={2}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 15l7-7 7 7"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
           </svg>
         </motion.button>
       )}

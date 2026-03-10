@@ -18,16 +18,14 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   /* ------------------------------
-     Keep hash synced (safe methods only)
-     ------------------------------ */
+     Keep hash synced
+  ------------------------------ */
 
-  // Sync hash on route changes (works for normal navigations)
   React.useEffect(() => {
     setHash(window.location.hash || "");
-    setMobileOpen(false); // close drawer on route change
+    setMobileOpen(false);
   }, [pathname]);
 
-  // Sync hash on real hash changes and back/forward
   React.useEffect(() => {
     const updateHash = () => setHash(window.location.hash || "");
     updateHash();
@@ -41,7 +39,6 @@ export default function Nav() {
     };
   }, []);
 
-  // Close on Escape
   React.useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileOpen(false);
@@ -50,7 +47,6 @@ export default function Nav() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  // Prevent background scroll when drawer is open
   React.useEffect(() => {
     if (!mobileOpen) return;
     const prev = document.body.style.overflow;
@@ -62,14 +58,12 @@ export default function Nav() {
 
   /* ------------------------------
      Click handlers
-     ------------------------------ */
+  ------------------------------ */
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    // If clicking Home while already on "/" but currently at "/#projects",
-    // Next may clear the hash without firing hashchange — so we do it ourselves.
     if (href === "/" && window.location.pathname === "/" && window.location.hash) {
       e.preventDefault();
       setMobileOpen(false);
@@ -77,12 +71,10 @@ export default function Nav() {
       window.history.replaceState(null, "", "/");
       setHash("");
 
-      // Optional: feels nice since "Home" implies top
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
-    // Your custom Projects behavior (freeze transforms handled by homepage)
     if (href === "/#projects" && window.location.pathname === "/") {
       e.preventDefault();
       setMobileOpen(false);
@@ -93,13 +85,12 @@ export default function Nav() {
       return;
     }
 
-    // Normal navigation: just close the drawer
     setMobileOpen(false);
   };
 
   /* ------------------------------
      Active link logic
-     ------------------------------ */
+  ------------------------------ */
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/" && hash !== "#projects";
@@ -110,13 +101,13 @@ export default function Nav() {
   const desktopLinkClass = (active: boolean) =>
     [
       "relative inline-block text-white/85 transition-colors duration-200 hover:text-white",
-      "after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-200 after:content-['']",
+      "after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-brand-sand after:transition-transform after:duration-200 after:content-['']",
       "hover:after:scale-x-100",
-      active ? "text-white after:scale-x-100 after:bg-[#8C3B1E]" : "",
+      active ? "text-white after:scale-x-100" : "",
     ].join(" ");
 
   return (
-    <header className="relative z-50 w-full border-b border-white/10 bg-black">
+    <header className="relative z-50 w-full border-b border-brand-sand/30 bg-black">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link
@@ -181,7 +172,6 @@ export default function Nav() {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Overlay */}
             <motion.button
               type="button"
               aria-label="Close menu overlay"
@@ -192,7 +182,6 @@ export default function Nav() {
               onClick={() => setMobileOpen(false)}
             />
 
-            {/* Panel */}
             <motion.aside
               id="mobile-drawer"
               className="sm:hidden fixed right-0 top-0 z-50 h-dvh w-[84%] max-w-sm border-l border-white/10 bg-black"
@@ -245,11 +234,9 @@ export default function Nav() {
                           className={[
                             "font-['the-seasons'] text-2xl font-medium tracking-wider text-white/90 hover:text-white",
                             "relative inline-block",
-                            "after:absolute after:left-0 after:-bottom-3 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-200 after:content-['']",
+                            "after:absolute after:left-0 after:-bottom-3 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-brand-sand after:transition-transform after:duration-200 after:content-['']",
                             "hover:after:scale-x-100",
-                            active
-                              ? "text-white after:scale-x-100 after:bg-[#8C3B1E]"
-                              : "",
+                            active ? "text-white after:scale-x-100" : "",
                           ].join(" ")}
                         >
                           {l.label}

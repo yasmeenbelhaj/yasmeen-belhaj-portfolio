@@ -15,13 +15,13 @@ export default function ContactPage() {
             className="mt-2 inline-block text-base font-medium hover:underline"
             href="mailto:YOUR_EMAIL_HERE"
           >
-            YOUR_EMAIL_HERE
+            yasmeen.belhaj@gmail.com
           </a>
 
           <div className="mt-6 flex flex-wrap gap-3 text-sm">
             <a
               className="rounded-full border border-zinc-200 px-4 py-2 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
-              href="https://www.linkedin.com"
+              href="https://www.linkedin.com/in/yasmeenbelhaj"
               target="_blank"
               rel="noreferrer"
             >
@@ -29,7 +29,7 @@ export default function ContactPage() {
             </a>
             <a
               className="rounded-full border border-zinc-200 px-4 py-2 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
-              href="https://github.com"
+              href="https://github.com/yasmeenbelhaj"
               target="_blank"
               rel="noreferrer"
             >

@@ -62,6 +62,9 @@ export default function HomePage() {
   const heroOpacity = useTransform(projectsTopProgress, [0.999, 1], [1, 0]);
   const projectsY = useTransform(heroProgress, [0, 0.45], [140, 0]);
 
+  // NEW: scaling for hero text block
+  const heroScale = useTransform(heroProgress, [0, 0.4], [1, 2]);
+
   return (
     <div className="relative bg-brand-black">
       <div ref={scrollRef} className="relative h-[180svh]">
@@ -81,7 +84,10 @@ export default function HomePage() {
           </div>
 
           <div className="absolute inset-0 z-10 flex items-center justify-center px-6">
-            <div className="text-center">
+            <motion.div
+              style={{ scale: heroScale }}
+              className="text-center"
+            >
               <h1 className="font-['the-seasons'] font-bold text-7xl text-brand-black tracking-wider">
                 YASMEEN BELHAJ
               </h1>
@@ -89,7 +95,7 @@ export default function HomePage() {
               <p className="mt-4 text-base text-brand-black/80 sm:text-lg">
                 Creative Technologist | Web & Real-Time Systems
               </p>
-            </div>
+            </motion.div>
           </div>
 
           <motion.div

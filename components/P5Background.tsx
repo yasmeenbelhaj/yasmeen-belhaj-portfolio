@@ -29,8 +29,10 @@ export default function P5Background() {
         s.draw = () => {
             if (s.mouseIsPressed === true) {
                 s.fill(0);
+                s.stroke(255);
             } else {
-                s.fill(255);
+                s.fill(255)
+                s.stroke(0);
             }
 
             s.circle(s.mouseX, s.mouseY, 100);

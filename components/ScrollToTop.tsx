@@ -39,7 +39,7 @@ export default function ScrollToTop() {
             z-50
             h-11 w-11 rounded-full
             bg-white/55 backdrop-blur-md
-            text-brand-rust
+            text-black
             border border-brand-sand/40
             shadow-[0_8px_24px_rgba(0,0,0,0.18)]
             flex items-center justify-center

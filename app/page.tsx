@@ -128,7 +128,7 @@ export default function HomePage() {
             style={{ opacity: restartButtonOpacity }}
             type="button"
             onClick={() => setSketchKey((prev) => prev + 1)}
-            className="fixed top-24 right-6 z-50 rounded-full border border-brand-sand/40 bg-brand-cream/80 px-4 py-2 text-xs tracking-wider text-brand-black backdrop-blur-sm shadow-md transition hover:bg-brand-cream"
+            className="fixed top-24 right-6 z-50 rounded-full border border-brand-sand/40 bg-brand-cream/80 px-4 py-2 text-xs tracking-wider text-brand-black backdrop-blur-sm shadow-md transition-colors duration-200 hover:bg-brand-rust hover:text-brand-cream"
             aria-label="Reset canvas"
           >
             Clear Canvas

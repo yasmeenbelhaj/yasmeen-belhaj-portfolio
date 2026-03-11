@@ -38,13 +38,13 @@ export default function ScrollToTop() {
             fixed right-6 bottom-6 sm:bottom-24 md:bottom-24
             z-50
             h-11 w-11 rounded-full
-            bg-white/55 backdrop-blur-md
+            bg-brand-cream/80 backdrop-blur-md
             text-black
             border border-brand-sand/40
             shadow-[0_8px_24px_rgba(0,0,0,0.18)]
             flex items-center justify-center
             transition-colors duration-200
-            hover:bg-brand-rust hover:text-white
+            hover:bg-brand-rust hover:text-brand-cream
           "
           aria-label="Scroll to top"
         >

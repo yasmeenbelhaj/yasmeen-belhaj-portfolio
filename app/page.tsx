@@ -88,12 +88,13 @@ export default function HomePage() {
 
             <div className="absolute inset-0 z-20 flex items-center justify-center px-6 pointer-events-none">
               <motion.div style={{ scale: heroScale }} className="text-center">
-                <h1 className="font-['the-seasons'] font-bold text-7xl text-brand-black tracking-wider">
-                  YASMEEN BELHAJ
-                </h1>
+                <h1 className="font-['the-seasons'] font-bold text-6xl sm:text-6xl lg:text-7xl tracking-[0.08em] text-brand-black">
+  YASMEEN <br className="sm:hidden" />
+  BELHAJ
+</h1>
 
-                <p className="mt-4 text-base text-brand-black/80 sm:text-lg">
-                  Creative Technologist | Web & Real-Time Systems
+                <p className="mt-5 text-base tracking-[0.08em] text-brand-black/70 sm:text-lg">
+                  Software Engineer | Frontend & Creative Technology
                 </p>
               </motion.div>
             </div>
@@ -129,9 +130,9 @@ export default function HomePage() {
             type="button"
             onClick={() => setSketchKey((prev) => prev + 1)}
             className="fixed top-24 right-6 z-50 rounded-full border border-brand-sand/40 bg-brand-cream/80 px-4 py-2 text-xs tracking-wider text-brand-black backdrop-blur-sm shadow-md transition-colors duration-200 hover:bg-brand-rust hover:text-brand-cream"
-            aria-label="Reset canvas"
+            aria-label="Clear Sketch"
           >
-            Clear Canvas
+            Clear Sketch
           </motion.button>
 
           <motion.section
@@ -150,8 +151,7 @@ export default function HomePage() {
                   </h2>
 
                   <p className="mt-3 text-white/70">
-                    Selected work across web development, real-time systems, and
-                    AR/XR.
+                    Selected work across frontend development, interactive systems, and AR/XR experiences.
                   </p>
                 </header>
 

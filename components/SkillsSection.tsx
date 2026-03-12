@@ -82,43 +82,39 @@ const skillGroups: {
   },
 ];
 
+const smoothEase = [0.22, 1, 0.36, 1] as const;
+
 const sectionIntro = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75 },
+    transition: {
+      duration: 0.75,
+      ease: smoothEase,
+    },
+  },
+};
+
+const cardsContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      delay: index * 0.06,
-    },
-  }),
-};
-
-const tagContainerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.025,
-      delayChildren: 0.04,
-    },
-  },
-};
-
-const tagVariants = {
-  hidden: { opacity: 0, y: 6 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.32 },
+    transition: {
+      duration: 0.8,
+      ease: smoothEase,
+    },
   },
 };
 
@@ -130,14 +126,14 @@ export default function SkillsSection() {
           variants={sectionIntro}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
           className="max-w-3xl"
         >
-          <h2 className="font-['the-seasons'] font-bold text-5xl tracking-wide text-white">
+          <h2 className="font-['the-seasons'] text-5xl font-bold tracking-wide text-white">
             Skills
           </h2>
 
-          <div className="mt-6 h-[2px] w-16 bg-brand-sand/80" />
+          <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
           <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/80">
             Frontend • Creative Tech • Workflow
@@ -150,18 +146,30 @@ export default function SkillsSection() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {skillGroups.map((group, index) => (
+        <motion.div
+          variants={cardsContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-14 grid gap-8 md:grid-cols-3"
+        >
+          {skillGroups.map((group) => (
             <motion.article
               key={group.title}
-              custom={index}
               variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="rounded-[1.75rem] border border-brand-sand/30 bg-brand-cream/[0.04] p-7 transition duration-300 hover:border-brand-sand/50 hover:bg-brand-cream/[0.06]"
+              whileHover={{ y: -4 }}
+              transition={{
+                duration: 0.28,
+                ease: smoothEase,
+              }}
+              className="group relative overflow-hidden rounded-[1.75rem] border border-brand-sand/30 bg-brand-cream/[0.04] p-7 transition-[border-color,background-color,box-shadow] duration-300 hover:border-brand-gold/45 hover:bg-brand-cream/[0.06] hover:shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
             >
-              <div className="flex min-h-full flex-col">
+              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-brand-gold/10 via-brand-gold/[0.04] to-transparent" />
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-gold/[0.08] blur-3xl" />
+              </div>
+
+              <div className="relative flex min-h-full flex-col">
                 <div>
                   <h3 className="font-['the-seasons'] text-3xl font-bold tracking-wide text-white">
                     {group.title}
@@ -171,30 +179,17 @@ export default function SkillsSection() {
                     {group.description}
                   </p>
 
-                  <div className="mt-6 h-px w-full bg-brand-sand/15" />
+                  <div className="mt-6 h-px w-full bg-brand-sand/15 transition-colors duration-300 group-hover:bg-brand-gold/20" />
                 </div>
 
-                <motion.div
-                  variants={tagContainerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="mt-6 flex flex-wrap gap-3"
-                >
+                <div className="mt-6 flex flex-wrap gap-3">
                   {group.skills.map((skill) => {
                     const Icon = skill.icon;
 
                     return (
-                      <motion.span
+                      <span
                         key={skill.name}
-                        variants={tagVariants}
-                        whileHover={{ y: -1.5, scale: 1.02 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 320,
-                          damping: 22,
-                        }}
-                        className="inline-flex items-center gap-2 rounded-full border border-brand-sand/30 bg-brand-cream/[0.05] px-4 py-2 text-sm text-brand-cream/85 transition-colors duration-200 hover:border-brand-gold/60 hover:bg-brand-gold/[0.08]"
+                        className="inline-flex items-center gap-2 rounded-full border border-brand-sand/30 bg-brand-cream/[0.05] px-4 py-2 text-sm text-brand-cream/85 transition-colors duration-200 group-hover:border-brand-sand/40"
                       >
                         {Icon ? (
                           <Icon
@@ -208,14 +203,14 @@ export default function SkillsSection() {
                           />
                         )}
                         <span>{skill.name}</span>
-                      </motion.span>
+                      </span>
                     );
                   })}
-                </motion.div>
+                </div>
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

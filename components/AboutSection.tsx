@@ -21,7 +21,7 @@ export default function AboutSection() {
           <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
           <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-olive/80">
-            Frontend • Interactive Systems • Creative Tech
+            Creative Technology • Interactive Systems • Web Dev
           </p>
 
           <div className="mt-8 space-y-6 text-base leading-relaxed text-brand-black/75">

@@ -172,10 +172,10 @@ export default function ContactSection() {
                 href="/yasmeen_belhaj-cv.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-brand-sand transition-colors duration-300 hover:text-brand-cream/85"
+                className="group inline-flex items-center gap-2 text-sm text-brand-sand transition-colors duration-300 hover:text-brand-cream/85"
               >
                 <span>View in browser</span>
-                <FiArrowUpRight className="h-[15px] w-[15px]" />
+                <FiArrowUpRight className="h-[15px] w-[15px] opacity-80 transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]" />
               </a>
             </div>
           </motion.div>

@@ -113,8 +113,9 @@ export default function Nav() {
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/" && hash === "";
-    if (href.startsWith("/#"))
+    if (href.startsWith("/#")) {
       return pathname === "/" && hash === href.replace("/", "");
+    }
     return pathname === href;
   };
 
@@ -129,7 +130,6 @@ export default function Nav() {
   return (
     <header className="relative z-50 w-full border-b border-brand-sand/30 bg-black">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        {/* Logo */}
         <Link
           href="/"
           onClick={(e) => handleNavClick(e, "/")}
@@ -138,7 +138,6 @@ export default function Nav() {
           Yasmeen Belhaj
         </Link>
 
-        {/* Desktop navigation */}
         <div className="hidden items-center gap-8 sm:flex">
           <ul className="flex items-center gap-6 text-sm">
             {links.map((l) => {
@@ -158,19 +157,17 @@ export default function Nav() {
             })}
           </ul>
 
-          {/* CV button */}
           <Link
             href="/yasmeen_belhaj-cv.pdf"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-brand-sand/40 px-4 py-1.5 text-xs tracking-wider text-white/90 transition hover:border-brand-gold/60 hover:text-white"
+            className="group inline-flex items-center gap-2 rounded-full border border-brand-sand/40 px-4 py-1.5 text-xs tracking-wider text-white/90 transition hover:border-brand-gold/60 hover:text-white"
           >
             CV
-            <FiArrowUpRight className="h-3.5 w-3.5" />
+            <FiArrowUpRight className="h-3.5 w-3.5 opacity-80 transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]" />
           </Link>
         </div>
 
-        {/* Mobile menu button */}
         <button
           type="button"
           className="inline-flex items-center justify-center rounded-md p-2 text-white/90 transition hover:bg-white/10 hover:text-white sm:hidden"
@@ -202,7 +199,6 @@ export default function Nav() {
         </button>
       </nav>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -264,8 +260,14 @@ export default function Nav() {
                       >
                         <Link
                           href={l.href}
-                          target={"external" in l && l.external ? "_blank" : undefined}
-                          rel={"external" in l && l.external ? "noreferrer" : undefined}
+                          target={
+                            "external" in l && l.external ? "_blank" : undefined
+                          }
+                          rel={
+                            "external" in l && l.external
+                              ? "noreferrer"
+                              : undefined
+                          }
                           onClick={(e) => {
                             if ("external" in l && l.external) {
                               setMobileOpen(false);
@@ -274,7 +276,7 @@ export default function Nav() {
                             handleNavClick(e, l.href);
                           }}
                           className={[
-                            "relative inline-block font-['the-seasons'] text-2xl font-medium tracking-wider text-white/90 hover:text-white",
+                            "group relative inline-block font-['the-seasons'] text-2xl font-medium tracking-wider text-white/90 hover:text-white",
                             "after:absolute after:left-0 after:-bottom-3 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-brand-sand after:transition-transform after:duration-200 after:content-['']",
                             "hover:after:scale-x-100",
                             active ? "text-white after:scale-x-100" : "",
@@ -283,7 +285,7 @@ export default function Nav() {
                           <span className="flex items-center gap-2">
                             {l.label}
                             {"external" in l && l.external && (
-                              <FiArrowUpRight className="h-4 w-4" />
+                              <FiArrowUpRight className="h-4 w-4 opacity-80 transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]" />
                             )}
                           </span>
                         </Link>

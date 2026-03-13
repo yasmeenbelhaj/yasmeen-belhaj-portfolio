@@ -4,22 +4,25 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/#projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#contact", label: "Contact" },
+];
+
+const mobileLinks = [
+  ...links,
+  { href: "/yasmeen_belhaj-cv.pdf", label: "CV", external: true },
 ];
 
 export default function Nav() {
   const pathname = usePathname();
   const [hash, setHash] = React.useState("");
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  /* ------------------------------
-     Keep hash synced
-  ------------------------------ */
 
   React.useEffect(() => {
     setHash(window.location.hash || "");
@@ -43,28 +46,49 @@ export default function Nav() {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileOpen(false);
     };
+
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
   React.useEffect(() => {
     if (!mobileOpen) return;
+
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
     return () => {
       document.body.style.overflow = prev;
     };
   }, [mobileOpen]);
 
-  /* ------------------------------
-     Click handlers
-  ------------------------------ */
+  const scrollToSection = (targetHash: string) => {
+    if (targetHash === "#projects") {
+      window.dispatchEvent(new Event("scroll-to-projects"));
+      window.history.replaceState(null, "", `/${targetHash}`);
+      setHash(targetHash);
+      return;
+    }
+
+    const id = targetHash.replace("#", "");
+    const section = document.getElementById(id);
+
+    if (!section) return;
+
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    window.history.replaceState(null, "", `/${targetHash}`);
+    setHash(targetHash);
+  };
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (href === "/" && window.location.pathname === "/" && window.location.hash) {
+    if (href === "/" && window.location.pathname === "/") {
       e.preventDefault();
       setMobileOpen(false);
 
@@ -75,26 +99,22 @@ export default function Nav() {
       return;
     }
 
-    if (href === "/#projects" && window.location.pathname === "/") {
+    if (href.startsWith("/#") && window.location.pathname === "/") {
       e.preventDefault();
       setMobileOpen(false);
 
-      window.dispatchEvent(new Event("scroll-to-projects"));
-      window.history.replaceState(null, "", "/#projects");
-      setHash("#projects");
+      const targetHash = href.replace("/", "");
+      scrollToSection(targetHash);
       return;
     }
 
     setMobileOpen(false);
   };
 
-  /* ------------------------------
-     Active link logic
-  ------------------------------ */
-
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/" && hash !== "#projects";
-    if (href === "/#projects") return pathname === "/" && hash === "#projects";
+    if (href === "/") return pathname === "/" && hash === "";
+    if (href.startsWith("/#"))
+      return pathname === "/" && hash === href.replace("/", "");
     return pathname === href;
   };
 
@@ -108,7 +128,7 @@ export default function Nav() {
 
   return (
     <header className="relative z-50 w-full border-b border-brand-sand/30 bg-black">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link
           href="/"
@@ -118,28 +138,42 @@ export default function Nav() {
           Yasmeen Belhaj
         </Link>
 
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-6 text-sm sm:flex">
-          {links.map((l) => {
-            const active = isActive(l.href);
-            return (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  onClick={(e) => handleNavClick(e, l.href)}
-                  className={desktopLinkClass(active)}
-                >
-                  {l.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        {/* Desktop navigation */}
+        <div className="hidden items-center gap-8 sm:flex">
+          <ul className="flex items-center gap-6 text-sm">
+            {links.map((l) => {
+              const active = isActive(l.href);
 
-        {/* Mobile button */}
+              return (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    onClick={(e) => handleNavClick(e, l.href)}
+                    className={desktopLinkClass(active)}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* CV button */}
+          <Link
+            href="/yasmeen_belhaj-cv.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-brand-sand/40 px-4 py-1.5 text-xs tracking-wider text-white/90 transition hover:border-brand-gold/60 hover:text-white"
+          >
+            CV
+            <FiArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+
+        {/* Mobile menu button */}
         <button
           type="button"
-          className="sm:hidden inline-flex items-center justify-center rounded-md p-2 text-white/90 hover:text-white hover:bg-white/10 transition"
+          className="inline-flex items-center justify-center rounded-md p-2 text-white/90 transition hover:bg-white/10 hover:text-white sm:hidden"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls="mobile-drawer"
@@ -175,7 +209,7 @@ export default function Nav() {
             <motion.button
               type="button"
               aria-label="Close menu overlay"
-              className="sm:hidden fixed inset-0 z-40 bg-black/60"
+              className="fixed inset-0 z-40 bg-black/60 sm:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -184,7 +218,7 @@ export default function Nav() {
 
             <motion.aside
               id="mobile-drawer"
-              className="sm:hidden fixed right-0 top-0 z-50 h-dvh w-[84%] max-w-sm border-l border-white/10 bg-black"
+              className="fixed right-0 top-0 z-50 h-dvh w-[84%] max-w-sm border-l border-white/10 bg-black sm:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -198,7 +232,7 @@ export default function Nav() {
 
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center rounded-md p-2 text-white/90 hover:text-white hover:bg-white/10 transition"
+                    className="inline-flex items-center justify-center rounded-md p-2 text-white/90 transition hover:bg-white/10 hover:text-white"
                     aria-label="Close menu"
                     onClick={() => setMobileOpen(false)}
                   >
@@ -216,8 +250,8 @@ export default function Nav() {
                     show: { transition: { staggerChildren: 0.06 } },
                   }}
                 >
-                  {links.map((l) => {
-                    const active = isActive(l.href);
+                  {mobileLinks.map((l) => {
+                    const active = !("external" in l) && isActive(l.href);
 
                     return (
                       <motion.li
@@ -230,16 +264,28 @@ export default function Nav() {
                       >
                         <Link
                           href={l.href}
-                          onClick={(e) => handleNavClick(e, l.href)}
+                          target={"external" in l && l.external ? "_blank" : undefined}
+                          rel={"external" in l && l.external ? "noreferrer" : undefined}
+                          onClick={(e) => {
+                            if ("external" in l && l.external) {
+                              setMobileOpen(false);
+                              return;
+                            }
+                            handleNavClick(e, l.href);
+                          }}
                           className={[
-                            "font-['the-seasons'] text-2xl font-medium tracking-wider text-white/90 hover:text-white",
-                            "relative inline-block",
+                            "relative inline-block font-['the-seasons'] text-2xl font-medium tracking-wider text-white/90 hover:text-white",
                             "after:absolute after:left-0 after:-bottom-3 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-brand-sand after:transition-transform after:duration-200 after:content-['']",
                             "hover:after:scale-x-100",
                             active ? "text-white after:scale-x-100" : "",
                           ].join(" ")}
                         >
-                          {l.label}
+                          <span className="flex items-center gap-2">
+                            {l.label}
+                            {"external" in l && l.external && (
+                              <FiArrowUpRight className="h-4 w-4" />
+                            )}
+                          </span>
                         </Link>
                       </motion.li>
                     );

@@ -40,12 +40,13 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col bg-brand-black font-[var(--font-body)] text-white antialiased">
         <Nav />
 
-        <main className="flex-1">
-          {children}
-        </main>
+        <main className="relative z-10 flex-1">{children}</main>
 
         <ScrollToTop />
-        <Footer />
+
+        <div className="relative z-10">
+          <Footer />
+        </div>
       </body>
     </html>
   );

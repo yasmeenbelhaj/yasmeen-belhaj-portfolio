@@ -6,7 +6,7 @@ import P5Background from "../components/P5Background";
 import ProjectCard from "../components/ProjectCard";
 import AboutSection from "../components/AboutSection";
 import SkillsSection from "../components/SkillsSection";
-import CVSection from "../components/CVSection";
+import ContactSection from "../components/ContactSection";
 import { projects } from "../content/projects";
 
 export default function HomePage() {
@@ -75,9 +75,9 @@ export default function HomePage() {
         <div ref={heroSceneRef} className="relative min-h-[180svh]">
           <motion.section
             style={{ opacity: heroOpacity }}
-            className="fixed top-0 left-0 w-full h-[100svh] z-0 overflow-hidden bg-brand-cream"
+            className="fixed top-0 left-0 h-[100svh] w-full overflow-hidden bg-brand-cream pointer-events-none"
           >
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 pointer-events-auto">
               <P5Background key={sketchKey} />
             </div>
 
@@ -88,10 +88,10 @@ export default function HomePage() {
 
             <div className="absolute inset-0 z-20 flex items-center justify-center px-6 pointer-events-none">
               <motion.div style={{ scale: heroScale }} className="text-center">
-                <h1 className="font-['the-seasons'] font-bold text-6xl sm:text-6xl lg:text-7xl tracking-[0.08em] text-brand-black">
-  YASMEEN <br className="sm:hidden" />
-  BELHAJ
-</h1>
+                <h1 className="font-['the-seasons'] font-bold text-6xl tracking-[0.08em] text-brand-black sm:text-6xl lg:text-7xl">
+                  YASMEEN <br className="sm:hidden" />
+                  BELHAJ
+                </h1>
 
                 <p className="mt-5 text-base tracking-[0.08em] text-brand-black/70 sm:text-lg">
                   Software Engineer | Frontend & Creative Technology
@@ -140,34 +140,43 @@ export default function HomePage() {
             className="relative z-10 pt-[100svh]"
           >
             <section
-              id="projects"
-              ref={projectsTopRef}
-              className="min-h-[100svh] rounded-t-3xl bg-brand-black text-white"
-            >
-              <div className="mx-auto max-w-5xl px-6 py-16">
-                <header className="max-w-2xl">
-                  <h2 className="font-['the-seasons'] font-bold text-5xl tracking-wide">
-                    Projects
-                  </h2>
+  id="projects"
+  ref={projectsTopRef}
+  className="min-h-[100svh] rounded-t-[2rem] bg-brand-black text-brand-cream"
+>
+  <div className="mx-auto max-w-6xl px-6 py-24">
+    <header className="max-w-3xl">
+      <h2 className="font-['the-seasons'] text-5xl font-bold tracking-wide text-white">
+        Projects
+      </h2>
 
-                  <p className="mt-3 text-white/70">
-                    Selected work across frontend development, interactive systems, and AR/XR experiences.
-                  </p>
-                </header>
+      <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
-                <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                  {projects.map((project) => (
-                    <ProjectCard key={project.slug} project={project} />
-                  ))}
-                </div>
-              </div>
-            </section>
+      <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/80">
+        Frontend Development • Creative Technology • Interactive Systems
+      </p>
+
+      <p className="mt-8 text-base leading-relaxed text-brand-cream/75">
+        Selected work spanning frontend engineering, motion-led interfaces,
+        interactive systems, and creative technology.
+      </p>
+    </header>
+
+    <div className="mt-14 grid gap-8 sm:grid-cols-2">
+      {projects.map((project) => (
+        <ProjectCard key={project.slug} project={project} />
+      ))}
+    </div>
+  </div>
+</section>
           </motion.section>
         </div>
 
-        <AboutSection />
-        <SkillsSection />
-        <CVSection />
+        <div className="relative z-10">
+          <AboutSection />
+          <SkillsSection />
+          <ContactSection />
+        </div>
       </div>
     </div>
   );

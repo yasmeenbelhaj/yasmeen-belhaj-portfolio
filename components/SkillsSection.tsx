@@ -1,33 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { IconType } from "react-icons";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiJavascript,
-  SiTailwindcss,
-  SiHtml5,
-  SiCss,
-  SiFramer,
-  SiThreedotjs,
-  SiUnity,
-  SiGit,
-  SiGithub,
-  SiFigma,
-  SiNetlify,
-  SiBlender,
-  SiPython,
-  SiWebgl,
-  SiP5Dotjs,
-  SiAutodeskmaya,
-} from "react-icons/si";
-import { VscVscode } from "react-icons/vsc";
+import { techIcons } from "../lib/techIcons";
 
 type Skill = {
   name: string;
-  icon?: IconType;
 };
 
 const skillGroups: {
@@ -40,13 +17,13 @@ const skillGroups: {
     description:
       "Responsive interfaces, component-based development, and modern web tooling.",
     skills: [
-      { name: "React", icon: SiReact },
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "JavaScript", icon: SiJavascript },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
-      { name: "HTML", icon: SiHtml5 },
-      { name: "CSS", icon: SiCss },
+      { name: "React" },
+      { name: "Next.js" },
+      { name: "TypeScript" },
+      { name: "JavaScript" },
+      { name: "Tailwind CSS" },
+      { name: "HTML" },
+      { name: "CSS" },
     ],
   },
   {
@@ -54,11 +31,11 @@ const skillGroups: {
     description:
       "Motion, creative coding, 3D, and real-time interactive systems.",
     skills: [
-      { name: "Framer Motion", icon: SiFramer },
-      { name: "p5.js", icon: SiP5Dotjs },
-      { name: "Three.js", icon: SiThreedotjs },
-      { name: "WebGL", icon: SiWebgl },
-      { name: "Unity", icon: SiUnity },
+      { name: "Framer Motion" },
+      { name: "p5.js" },
+      { name: "Three.js" },
+      { name: "WebGL" },
+      { name: "Unity" },
       { name: "AR Foundation" },
       { name: "Interactive Design" },
       { name: "Creative Coding" },
@@ -69,14 +46,14 @@ const skillGroups: {
     description:
       "Design, version control, deployment, and supporting technical workflows.",
     skills: [
-      { name: "Git", icon: SiGit },
-      { name: "GitHub", icon: SiGithub },
-      { name: "Figma", icon: SiFigma },
-      { name: "Netlify", icon: SiNetlify },
-      { name: "VS Code", icon: VscVscode },
-      { name: "Blender", icon: SiBlender },
-      { name: "Maya", icon: SiAutodeskmaya },
-      { name: "Python", icon: SiPython },
+      { name: "Git" },
+      { name: "GitHub" },
+      { name: "Figma" },
+      { name: "Netlify" },
+      { name: "VS Code" },
+      { name: "Blender" },
+      { name: "Maya" },
+      { name: "Python" },
       { name: "C#" },
     ],
   },
@@ -184,7 +161,7 @@ export default function SkillsSection() {
 
                 <div className="mt-6 flex flex-wrap gap-3">
                   {group.skills.map((skill) => {
-                    const Icon = skill.icon;
+                    const Icon = techIcons[skill.name];
 
                     return (
                       <span

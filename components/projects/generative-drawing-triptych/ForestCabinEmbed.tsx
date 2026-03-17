@@ -6,7 +6,20 @@ import forestCabinSketch from "../../../lib/p5/forestCabinSketch";
 const SKETCH_WIDTH = 700;
 const SKETCH_HEIGHT = 1024;
 const ASPECT_RATIO = SKETCH_HEIGHT / SKETCH_WIDTH;
-const MAX_VIEWPORT_HEIGHT = 0.78;
+
+function getMaxViewportHeight() {
+  if (typeof window === "undefined") return 0.72;
+
+  const isTabletPortrait = window.matchMedia(
+    "(min-width: 768px) and (max-width: 1023px) and (orientation: portrait)"
+  ).matches;
+
+  if (isTabletPortrait) return 0.6;
+
+  if (window.innerWidth < 768) return 0.72;
+
+  return 0.78;
+}
 
 export default function ForestCabinEmbed() {
   const outerRef = useRef<HTMLDivElement | null>(null);
@@ -17,6 +30,27 @@ export default function ForestCabinEmbed() {
     let isMounted = true;
     let observer: ResizeObserver | null = null;
 
+    const updateCanvasSize = () => {
+      if (!outerRef.current || !sketchRef.current?.canvas) return;
+
+      const maxWidthFromContainer = outerRef.current.clientWidth;
+      const maxHeightFromViewport = window.innerHeight * getMaxViewportHeight();
+      const maxWidthFromHeight = maxHeightFromViewport / ASPECT_RATIO;
+
+      const availableWidth = Math.min(
+        maxWidthFromContainer,
+        maxWidthFromHeight,
+        SKETCH_WIDTH
+      );
+
+      const nextHeight = availableWidth * ASPECT_RATIO;
+
+      const canvas = sketchRef.current.canvas as HTMLCanvasElement;
+      canvas.style.width = `${availableWidth}px`;
+      canvas.style.height = `${nextHeight}px`;
+      canvas.style.display = "block";
+    };
+
     async function initSketch() {
       if (!mountRef.current || !outerRef.current) return;
 
@@ -26,28 +60,6 @@ export default function ForestCabinEmbed() {
       if (!isMounted || !mountRef.current || !outerRef.current) return;
 
       sketchRef.current = new P5(forestCabinSketch, mountRef.current);
-
-      const updateCanvasSize = () => {
-        if (!outerRef.current || !sketchRef.current?.canvas) return;
-
-        const maxWidthFromContainer = outerRef.current.clientWidth;
-        const maxHeightFromViewport = window.innerHeight * MAX_VIEWPORT_HEIGHT;
-        const maxWidthFromHeight = maxHeightFromViewport / ASPECT_RATIO;
-
-        const availableWidth = Math.min(
-          maxWidthFromContainer,
-          maxWidthFromHeight,
-          SKETCH_WIDTH
-        );
-
-        const nextHeight = availableWidth * ASPECT_RATIO;
-
-        const canvas = sketchRef.current.canvas as HTMLCanvasElement;
-
-        canvas.style.width = `${availableWidth}px`;
-        canvas.style.height = `${nextHeight}px`;
-        canvas.style.display = "block";
-      };
 
       updateCanvasSize();
 
@@ -64,7 +76,7 @@ export default function ForestCabinEmbed() {
     return () => {
       isMounted = false;
       observer?.disconnect();
-      window.removeEventListener("resize", () => {});
+      window.removeEventListener("resize", updateCanvasSize);
       sketchRef.current?.remove?.();
       sketchRef.current = null;
     };

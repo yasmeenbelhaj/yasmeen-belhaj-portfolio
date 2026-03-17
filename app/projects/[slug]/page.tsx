@@ -3,10 +3,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 
 import { projects } from "../../../content/projects";
 import { techIcons } from "../../../lib/techIcons";
-
-import SnowyMountainsEmbed from "../../../components/projects/generative-drawing-triptych/SnowyMountainsEmbed";
-import CitySkylineEmbed from "../../../components/projects/generative-drawing-triptych/CitySkylineEmbed";
-import ForestCabinEmbed from "../../../components/projects/generative-drawing-triptych/ForestCabinEmbed";
+import ProjectTriptychSection from "../../../components/projects/ProjectTriptychSection";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -22,15 +19,9 @@ export default async function ProjectDetailPage({
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const sketchMap: Record<string, React.ReactNode> = {
-    "snowy-mountains": <SnowyMountainsEmbed />,
-    "city-skyline": <CitySkylineEmbed />,
-    "forest-cabin": <ForestCabinEmbed />,
-  };
-
   return (
     <main className="min-h-screen bg-brand-black text-brand-cream">
-      <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-6 pt-24 pb-28 md:pt-28 md:pb-32">
         <header className="max-w-3xl">
           <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
             {project.year}
@@ -48,7 +39,7 @@ export default async function ProjectDetailPage({
             </p>
           )}
 
-          <p className="mt-8 text-lg leading-relaxed text-brand-cream/82">
+          <p className="mt-8 text-lg leading-relaxed text-brand-cream/82 md:text-[1.2rem] lg:text-lg">
             {project.tagline}
           </p>
 
@@ -80,69 +71,28 @@ export default async function ProjectDetailPage({
           </div>
         </header>
 
-        <section className="mt-16 max-w-3xl">
+        <section className="mt-20 max-w-3xl md:mt-24">
           <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
             Overview
           </p>
 
-          <p className="mt-5 text-base leading-relaxed text-brand-cream/80 md:text-lg">
-            {project.intro}
-          </p>
+          <div className="mt-5 space-y-5">
+            <p className="text-base leading-relaxed text-brand-cream/80 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed">
+              {project.intro}
+            </p>
 
-          <p className="mt-5 text-base leading-relaxed text-brand-cream/72">
-            {project.overview}
-          </p>
+            <p className="text-base leading-relaxed text-brand-cream/72 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed">
+              {project.overview}
+            </p>
+          </div>
         </section>
 
-        {project.triptych?.length ? (
-          <section className="mt-20">
-            <div className="max-w-3xl">
-              <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
-                Triptych
-              </p>
-
-              <p className="mt-5 text-base leading-relaxed text-brand-cream/72">
-                The three sketches are presented together to preserve the
-                project as a cohesive series.
-              </p>
-            </div>
-
-            <div className="mt-10 space-y-8">
-              {project.triptych.map((sketch) => (
-                <div key={sketch.slug} className="flex justify-center">
-                  <article className="group max-w-full min-w-0 rounded-[1.75rem] border border-brand-sand/25 bg-brand-cream/[0.04] px-4 py-4 sm:px-5 sm:py-5 transition-[border-color,background-color,box-shadow] duration-300 hover:border-brand-gold/45 hover:bg-brand-cream/[0.06] hover:shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
-                    <div className="mx-auto w-fit max-w-full">
-                      <div className="mx-auto w-fit max-w-full overflow-hidden rounded-[1.25rem] border border-brand-sand/15 bg-brand-black/40">
-                        {sketchMap[sketch.slug]}
-                      </div>
-
-                      <div className="mt-4 min-w-0 sm:mt-5">
-                        <h2 className="max-w-[26rem] font-['the-seasons'] text-3xl font-bold leading-none tracking-[0.03em] text-white">
-                          {sketch.title}
-                        </h2>
-
-                        <p className="mt-3 max-w-[26rem] text-sm leading-6 text-brand-cream/72">
-                          {sketch.description}
-                        </p>
-
-                        {sketch.interactionHint && (
-                          <ul className="mt-4 max-w-[26rem] space-y-1 text-xs uppercase tracking-[0.18em] text-brand-gold/80">
-                            {sketch.interactionHint.map((hint) => (
-                              <li key={hint}>{hint}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              ))}
-            </div>
-          </section>
+        {project.type === "triptych" && project.triptych?.length ? (
+          <ProjectTriptychSection project={project} />
         ) : null}
 
         {project.buildNotes?.length ? (
-          <section className="mt-20 max-w-4xl">
+          <section className="mt-24 max-w-4xl">
             <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
               Build & Techniques
             </p>
@@ -151,9 +101,9 @@ export default async function ProjectDetailPage({
               {project.buildNotes.map((note) => (
                 <div
                   key={note}
-                  className="rounded-[1.4rem] border border-brand-sand/20 bg-brand-cream/[0.03] px-5 py-4"
+                  className="rounded-[1.4rem] border border-brand-sand/20 bg-brand-cream/[0.03] px-5 py-4 md:px-6 md:py-5"
                 >
-                  <p className="text-base leading-relaxed text-brand-cream/78">
+                  <p className="text-base leading-relaxed text-brand-cream/78 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed">
                     {note}
                   </p>
                 </div>
@@ -172,9 +122,9 @@ export default async function ProjectDetailPage({
               {project.reflection.map((item) => (
                 <div
                   key={item}
-                  className="rounded-[1.4rem] border border-brand-sand/20 bg-brand-cream/[0.03] px-5 py-4"
+                  className="rounded-[1.4rem] border border-brand-sand/20 bg-brand-cream/[0.03] px-5 py-4 md:px-6 md:py-5"
                 >
-                  <p className="text-base leading-relaxed text-brand-cream/78">
+                  <p className="text-base leading-relaxed text-brand-cream/78 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed">
                     {item}
                   </p>
                 </div>

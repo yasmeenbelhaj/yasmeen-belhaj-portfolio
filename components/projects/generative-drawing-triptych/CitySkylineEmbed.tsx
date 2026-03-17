@@ -5,7 +5,20 @@ import citySkylineSketch from "../../../lib/p5/citySkylineSketch";
 
 const SKETCH_WIDTH = 700;
 const SKETCH_HEIGHT = 1024;
-const MAX_VIEWPORT_HEIGHT = 0.78;
+
+function getMaxViewportHeight() {
+  if (typeof window === "undefined") return 0.72;
+
+  const isTabletPortrait = window.matchMedia(
+    "(min-width: 768px) and (max-width: 1023px) and (orientation: portrait)"
+  ).matches;
+
+  if (isTabletPortrait) return 0.6;
+
+  if (window.innerWidth < 768) return 0.72;
+
+  return 0.78;
+}
 
 export default function CitySkylineEmbed() {
   const outerRef = useRef<HTMLDivElement | null>(null);
@@ -21,7 +34,7 @@ export default function CitySkylineEmbed() {
       if (!outerRef.current) return;
 
       const availableWidth = outerRef.current.clientWidth;
-      const availableHeight = window.innerHeight * MAX_VIEWPORT_HEIGHT;
+      const availableHeight = window.innerHeight * getMaxViewportHeight();
 
       const widthScale = availableWidth / SKETCH_WIDTH;
       const heightScale = availableHeight / SKETCH_HEIGHT;

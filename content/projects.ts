@@ -10,6 +10,13 @@ export type ProjectLink = {
   href: string;
 };
 
+export type ProjectType = "standard" | "triptych";
+
+export type ProjectTriptychSectionContent = {
+  eyebrow?: string;
+  intro?: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -19,10 +26,12 @@ export type Project = {
   roles: string[];
   stack: string[];
   coverImage?: string;
+  type?: ProjectType;
 
   intro: string;
   overview: string;
   triptych?: ProjectSketch[];
+  triptychSection?: ProjectTriptychSectionContent;
   buildNotes?: string[];
   reflection?: string[];
   links?: ProjectLink[];
@@ -38,12 +47,19 @@ export const projects: Project[] = [
     meta: "Creative Coding • p5.js • Generative Drawing",
     roles: ["Creative Developer", "Designer"],
     stack: ["JavaScript", "p5.js", "HTML", "CSS"],
+    type: "triptych",
 
     intro:
       "A portfolio presentation of a generative drawing project originally created for an introductory creative coding module. The brief called for three distinct p5.js drawings, with at least two static pieces and the option for a third to be animated or interactive.",
 
     overview:
       "My response was a cohesive triptych made up of three landscape scenes: Snowy Mountains, City Skyline, and Forest Cabin. Across the series, I focused on a shared geometric visual language, strong colour relationships, and repeated coded elements built through functions, arrays, and simple systems.",
+
+    triptychSection: {
+      eyebrow: "Triptych",
+      intro:
+        "The three sketches are presented together as a cohesive series, with each piece given its own editorial layout while preserving the overall rhythm of the project.",
+    },
 
     triptych: [
       {
@@ -64,10 +80,10 @@ export const projects: Project[] = [
         description:
           "A forest landscape with interactive details that add warmth and a subtle sense of narrative to the scene.",
         interactionHint: [
-          "Press 1 to launch a shooting star",
-          "Press 2 to trigger a meteor shower",
-          "Press 0 to clear the sky",
-          "Click and hold the cabin window to turn on the light",
+          "Press 1 — Launch a shooting star",
+          "Press 2 — Trigger a meteor shower",
+          "Press 0 — Clear the sky",
+          "Click and hold the cabin window — Turn on the light",
         ],
       },
     ],

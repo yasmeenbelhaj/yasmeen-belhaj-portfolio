@@ -16,8 +16,8 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.04,
+      staggerChildren: 0.12,
+      delayChildren: 0.06,
     },
   },
 };
@@ -62,42 +62,42 @@ export default function TriptychSketchRow({
       whileInView="visible"
       viewport={{ once: true, amount: 0.18 }}
       variants={containerVariants}
-      className="grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:items-start lg:gap-12"
+      className="grid gap-10 md:gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:items-start lg:gap-16"
     >
-      <div className="max-w-md lg:mt-4 lg:max-w-lg">
+      <div className="max-w-md lg:mt-6 lg:max-w-lg">
         <motion.p
           variants={itemReveal}
-          className="font-['the-seasons'] text-[5.5rem] leading-[0.85] tracking-[-0.04em] text-brand-sand/28 sm:text-[7rem] md:text-[8.5rem] lg:mt-3 lg:text-[10rem] xl:text-[11rem]"
+          className="font-['the-seasons'] text-[5.5rem] leading-[0.85] tracking-[-0.04em] text-brand-sand/90 sm:text-[7rem] md:text-[8.5rem] lg:mt-4 lg:text-[10rem] xl:text-[11rem]"
         >
           {number}
         </motion.p>
 
         <motion.h2
           variants={itemReveal}
-          className="mt-2 font-['the-seasons'] text-3xl font-bold leading-none tracking-[0.03em] text-white md:text-4xl"
+          className="mt-4 font-['the-seasons'] text-3xl font-bold leading-none tracking-[0.03em] text-white md:text-4xl"
         >
           {title}
         </motion.h2>
 
         <motion.div
           variants={itemReveal}
-          className="mt-5 h-[2px] w-12 bg-brand-terracotta/70"
+          className="mt-6 h-[2px] w-12 bg-brand-terracotta/80"
         />
 
         <motion.p
           variants={itemReveal}
-          className="mt-6 text-base leading-relaxed text-brand-cream/76 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed"
+          className="mt-7 text-base leading-relaxed text-brand-cream/80 md:text-[1.05rem] md:leading-[1.85] lg:text-base lg:leading-relaxed"
         >
           {description}
         </motion.p>
 
         {interactionHint && (
-          <motion.div variants={itemReveal} className="mt-8 hidden lg:block">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-brand-sand/70">
+          <motion.div variants={itemReveal} className="mt-10 hidden lg:block">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-brand-sand/90">
               Interactions
             </p>
 
-            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-brand-cream/68 md:text-[0.98rem] md:leading-[1.75] lg:text-sm lg:leading-relaxed">
+            <ul className="mt-5 space-y-2 text-base leading-relaxed text-brand-cream/80 md:text-[0.98rem] md:leading-[1.8] lg:text-sm lg:leading-relaxed">
               {interactionHint.map((hint, hintIndex) => (
                 <motion.li
                   key={`desktop-${hint}`}
@@ -120,7 +120,7 @@ export default function TriptychSketchRow({
 
       <motion.div
         variants={sketchReveal}
-        className="flex w-full min-w-0 flex-col items-center lg:items-end"
+        className="flex w-full min-w-0 flex-col items-center lg:items-end lg:pt-2"
       >
         <motion.div
           whileHover={{ y: -3 }}
@@ -133,12 +133,12 @@ export default function TriptychSketchRow({
         </motion.div>
 
         {interactionHint && (
-          <motion.div variants={itemReveal} className="mt-6 w-full lg:hidden">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-brand-sand/70">
+          <motion.div variants={itemReveal} className="mt-8 w-full lg:hidden">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-brand-sand/90">
               Interactions
             </p>
 
-            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-brand-cream/68 md:text-[0.98rem] md:leading-[1.75] lg:text-sm lg:leading-relaxed">
+            <ul className="mt-5 space-y-2 text-base leading-relaxed text-brand-cream/80 md:text-[0.98rem] md:leading-[1.8] lg:text-sm lg:leading-relaxed">
               {interactionHint.map((hint, hintIndex) => (
                 <motion.li
                   key={`mobile-${hint}`}

@@ -26,12 +26,12 @@ export default function ProjectCard({ project }: { project: Project }) {
                 {project.title}
               </h3>
 
-              <p className="mt-4 text-sm leading-relaxed text-brand-cream/68">
+              <p className="mt-4 text-sm leading-relaxed text-brand-cream/80">
                 {project.tagline}
               </p>
             </div>
 
-            <span className="shrink-0 pt-1 text-[11px] uppercase tracking-[0.18em] text-brand-sand/75">
+            <span className="shrink-0 pt-1 text-[11px] uppercase tracking-[0.18em] text-brand-sand/80">
               {project.year}
             </span>
           </div>
@@ -49,7 +49,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 >
                   {Icon ? (
                     <Icon
-                      className="h-[15px] w-[15px] shrink-0 text-brand-sand/80"
+                      className="h-[15px] w-[15px] shrink-0 text-brand-sand"
                       aria-hidden="true"
                     />
                   ) : (
@@ -66,14 +66,14 @@ export default function ProjectCard({ project }: { project: Project }) {
           </div>
 
           <div className="mt-8 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
+            <span className="text-xs uppercase tracking-[0.22em] text-brand-sand/80">
               Case Study
             </span>
 
-            <span className="group/arrow inline-flex items-center gap-1 text-sm text-brand-cream/88 transition-colors duration-200">
+            <span className="group/arrow inline-flex items-center gap-1 text-sm text-brand-cream/80 transition-colors duration-200">
               <span>View project</span>
               <FiArrowUpRight
-                className="h-3.5 w-3.5 opacity-70 transition-transform duration-200 group-hover/arrow:-translate-y-[1px] group-hover/arrow:translate-x-[1px]"
+                className="h-3.5 w-3.5 transition-transform duration-200 group-hover/arrow:-translate-y-[1px] group-hover/arrow:translate-x-[1px]"
                 aria-hidden="true"
               />
             </span>

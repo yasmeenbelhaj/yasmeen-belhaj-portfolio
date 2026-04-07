@@ -23,7 +23,7 @@ export default async function ProjectDetailPage({
     <main className="min-h-screen bg-brand-black text-brand-cream">
       <div className="mx-auto max-w-6xl px-6 pt-24 pb-28 md:pt-28 md:pb-32">
         <header className="max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
+          <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/90">
             {project.year}
           </p>
 
@@ -34,12 +34,12 @@ export default async function ProjectDetailPage({
           <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
           {project.meta && (
-            <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/75">
+            <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/90">
               {project.meta}
             </p>
           )}
 
-          <p className="mt-8 text-lg leading-relaxed text-brand-cream/82 md:text-[1.2rem] lg:text-lg">
+          <p className="mt-8 text-lg leading-relaxed text-brand-cream/80 md:text-[1.2rem] lg:text-lg">
             {project.tagline}
           </p>
 
@@ -72,16 +72,12 @@ export default async function ProjectDetailPage({
         </header>
 
         <section className="mt-20 max-w-3xl md:mt-24">
-          <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
+          <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/90">
             Overview
           </p>
 
           <div className="mt-5 space-y-5">
             <p className="text-base leading-relaxed text-brand-cream/80 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed">
-              {project.intro}
-            </p>
-
-            <p className="text-base leading-relaxed text-brand-cream/72 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed">
               {project.overview}
             </p>
           </div>
@@ -92,42 +88,19 @@ export default async function ProjectDetailPage({
         ) : null}
 
         {project.buildNotes?.length ? (
-          <section className="mt-24 max-w-4xl">
-            <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
-              Build & Techniques
+          <section className="mt-24 max-w-3xl">
+            <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/90">
+              Build & Strategy
             </p>
 
-            <div className="mt-8 grid gap-5">
+            <div className="mt-5 space-y-5">
               {project.buildNotes.map((note) => (
-                <div
+                <p
                   key={note}
-                  className="rounded-[1.4rem] border border-brand-sand/20 bg-brand-cream/[0.03] px-5 py-4 md:px-6 md:py-5"
+                  className="text-base leading-relaxed text-brand-cream/80 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed"
                 >
-                  <p className="text-base leading-relaxed text-brand-cream/78 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed">
-                    {note}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        ) : null}
-
-        {project.reflection?.length ? (
-          <section className="mt-20 max-w-4xl">
-            <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
-              Reflection
-            </p>
-
-            <div className="mt-8 grid gap-5">
-              {project.reflection.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[1.4rem] border border-brand-sand/20 bg-brand-cream/[0.03] px-5 py-4 md:px-6 md:py-5"
-                >
-                  <p className="text-base leading-relaxed text-brand-cream/78 md:text-[1.05rem] md:leading-[1.8] lg:text-base lg:leading-relaxed">
-                    {item}
-                  </p>
-                </div>
+                  {note}
+                </p>
               ))}
             </div>
           </section>
@@ -135,7 +108,7 @@ export default async function ProjectDetailPage({
 
         {project.links?.length ? (
           <section className="mt-20 max-w-4xl">
-            <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/70">
+            <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/90">
               Links
             </p>
 
@@ -146,7 +119,7 @@ export default async function ProjectDetailPage({
                     href={link.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group inline-flex items-center gap-2 rounded-full border border-brand-sand/35 bg-brand-cream/[0.05] px-5 py-2.5 text-sm text-brand-cream transition-colors duration-200 hover:border-brand-gold/60 hover:bg-brand-cream/[0.1]"
+                    className="group inline-flex items-center gap-2 rounded-full border border-brand-sand/35 bg-brand-cream/[0.05] px-5 py-2.5 text-sm text-brand-cream/80 transition-colors duration-200 hover:border-brand-gold/60 hover:bg-brand-cream/[0.1]"
                   >
                     {link.label}
 

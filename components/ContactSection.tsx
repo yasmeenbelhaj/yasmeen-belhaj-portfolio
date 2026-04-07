@@ -92,12 +92,12 @@ export default function ContactSection() {
           <div className="mt-6 h-[2px] w-20 bg-brand-terracotta/80" />
 
           <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-olive/80">
-            Graduate Roles • Frontend • Creative Technology
+            Graduate Roles • Front-End • Creative Technology
           </p>
 
           <p className="mt-8 max-w-[46rem] text-base leading-relaxed text-black sm:text-[1.05rem]">
             I’m currently seeking graduate and early-career opportunities in
-            software engineering, frontend development, and creative
+            software engineering, front-end development, and creative
             technology. For roles, collaborations, or conversation, feel free
             to get&nbsp;in&nbsp;touch.
           </p>
@@ -153,7 +153,7 @@ export default function ContactSection() {
               CV
             </h3>
 
-            <p className="mt-4 max-w-[22rem] text-sm leading-relaxed text-brand-cream/75">
+            <p className="mt-4 max-w-[22rem] text-sm leading-relaxed text-brand-cream/80">
               A concise overview of my background, technical experience, and
               selected work.
             </p>
@@ -162,7 +162,7 @@ export default function ContactSection() {
               <a
                 href="/yasmeen_belhaj-cv.pdf"
                 download
-                className="inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-brand-gold/[0.08] px-5 py-3 text-sm text-brand-cream/85 transition-[border-color,background-color,transform] duration-300 hover:-translate-y-[1px] hover:border-brand-gold/70 hover:bg-brand-gold/[0.14]"
+                className="inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-brand-gold/[0.08] px-5 py-3 text-sm text-brand-cream/80 transition-[border-color,background-color,transform] duration-300 hover:-translate-y-[1px] hover:border-brand-gold/70 hover:bg-brand-gold/[0.14]"
               >
                 <FiDownload className="h-[16px] w-[16px]" />
                 <span>Download CV</span>
@@ -172,7 +172,7 @@ export default function ContactSection() {
                 href="/yasmeen_belhaj-cv.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2 text-sm text-brand-sand transition-colors duration-300 hover:text-brand-cream/85"
+                className="group inline-flex items-center gap-2 text-sm text-brand-sand transition-colors duration-300 hover:text-brand-cream/80"
               >
                 <span>View in browser</span>
                 <FiArrowUpRight className="h-[15px] w-[15px] opacity-80 transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]" />

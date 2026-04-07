@@ -26,12 +26,12 @@ export default function AboutSection() {
 
           <div className="mt-8 space-y-6 text-base leading-relaxed text-brand-black/75">
             <p>
-              I’m a frontend-focused software engineer working across web
+              I’m a front-end-focused software engineer working across web
               development, interactive systems, and creative technology.
             </p>
 
             <p>
-              My work combines responsive frontend development, motion, and
+              My work combines responsive front-end development, motion, and
               creative coding to build expressive digital experiences and
               thoughtful interfaces.
             </p>

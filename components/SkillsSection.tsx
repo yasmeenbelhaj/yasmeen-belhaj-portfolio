@@ -13,7 +13,7 @@ const skillGroups: {
   skills: Skill[];
 }[] = [
   {
-    title: "Frontend",
+    title: "Front-End",
     description:
       "Responsive interfaces, component-based development, and modern web tooling.",
     skills: [
@@ -112,13 +112,13 @@ export default function SkillsSection() {
 
           <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
-          <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/80">
-            Frontend • Creative Tech • Workflow
+          <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/90">
+            Front-End • Creative Tech • Workflow
           </p>
 
-          <p className="mt-8 text-base leading-relaxed text-brand-cream/75">
+          <p className="mt-8 text-base leading-relaxed text-brand-cream/80">
             A selection of the technologies, tools, and creative systems I use
-            across frontend development, interactive experiences, and real-time
+            across front-end development, interactive experiences, and real-time
             work.
           </p>
         </motion.div>
@@ -152,7 +152,7 @@ export default function SkillsSection() {
                     {group.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-relaxed text-brand-cream/65">
+                  <p className="mt-4 text-sm leading-relaxed text-brand-cream/80">
                     {group.description}
                   </p>
 
@@ -170,12 +170,12 @@ export default function SkillsSection() {
                       >
                         {Icon ? (
                           <Icon
-                            className="h-[17px] w-[17px] shrink-0 text-brand-sand/80"
+                            className="h-[17px] w-[17px] shrink-0 text-brand-sand"
                             aria-hidden="true"
                           />
                         ) : (
                           <span
-                            className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-sand/75"
+                            className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-sand"
                             aria-hidden="true"
                           />
                         )}

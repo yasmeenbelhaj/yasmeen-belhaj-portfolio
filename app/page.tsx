@@ -94,7 +94,7 @@ export default function HomePage() {
                 </h1>
 
                 <p className="mt-5 text-base tracking-[0.08em] text-brand-black/70 sm:text-lg">
-                  Software Engineer | Frontend & Creative Technology
+                  Software Engineer | Front-End & Creative Technology
                 </p>
               </motion.div>
             </div>
@@ -152,12 +152,12 @@ export default function HomePage() {
 
       <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
-      <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/80">
-        Frontend Development • Creative Technology • Interactive Systems
+      <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/90">
+        Front-End Development • Creative Technology • Interactive Systems
       </p>
 
-      <p className="mt-8 text-base leading-relaxed text-brand-cream/75">
-        Selected work spanning frontend engineering, motion-led interfaces,
+      <p className="mt-8 text-base leading-relaxed text-brand-cream/80">
+        Selected work spanning front-end engineering, motion-led interfaces,
         interactive systems, and creative technology.
       </p>
     </header>

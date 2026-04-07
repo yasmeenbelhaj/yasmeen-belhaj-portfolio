@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="space-y-1 text-sm text-white/80">
             <p>© {new Date().getFullYear()} Yasmeen Belhaj</p>
             <p className="text-white/40">
-              Software Engineer · Frontend & Creative Technology
+              Software Engineer | Front-End & Creative Technology
             </p>
           </div>
 

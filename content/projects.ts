@@ -10,11 +10,6 @@ export type ProjectLink = {
   href: string;
 };
 
-export type ProjectTriptychSectionContent = {
-  eyebrow?: string;
-  intro?: string;
-};
-
 export type ProjectClient = {
   name: string;
   url?: string;
@@ -48,11 +43,11 @@ export type Project = {
   title: string;
   tagline: string;
   year: string;
-  meta: string;
-  roles: string[];
+  meta?: string;
   stack: string[];
   coverImage?: string;
-  type?: string; //Client Project, Independent Project, Commisioned Work, Experimental
+  type: string; // Client Project, Independent Project, Commissioned Work, Experimental
+  layout?: "triptych";
 
   client?: ProjectClient;
   showcase?: ProjectShowcase;
@@ -60,7 +55,6 @@ export type Project = {
 
   overview: string;
   triptych?: ProjectSketch[];
-  triptychSection?: ProjectTriptychSectionContent;
   buildNotes?: string[];
   reflection?: string;
   links?: ProjectLink[];
@@ -73,19 +67,13 @@ export const projects: Project[] = [
     tagline:
       "A three-part p5.js landscape series using geometric forms, layered colour, and early creative coding experiments.",
     year: "2021",
-    meta: "Creative Coding • p5.js • Generative Drawing",
-    roles: ["Creative Developer", "Designer"],
+    meta: "Creative Coding • Generative Drawing",
     stack: ["JavaScript", "p5.js", "HTML", "CSS"],
     type: "Independent Project",
+    layout: "triptych",
 
     overview:
       "This project presents a generative drawing series created for an introductory creative coding module. The brief asked for three distinct p5.js drawings, with at least two static outcomes and the option for interaction. I approached this as a triptych of landscape scenes: Snowy Mountains, City Skyline, and Forest Cabin. Each piece explores geometric forms, bold colour, and simple generative systems, while maintaining a consistent visual language across the series.",
-
-    triptychSection: {
-      eyebrow: "Triptych",
-      intro:
-        "The three sketches are presented as a single series, with each drawing given space to stand on its own while still feeling part of the same visual language.",
-    },
 
     triptych: [
       {
@@ -128,10 +116,8 @@ export const projects: Project[] = [
     tagline:
       "Opening up a rarely accessible historic site through an interactive 360° walkthrough.",
     year: "2026",
-    meta: "",
-    roles: ["Creative Director", "Project Manager", "Video Editor"],
     stack: ["Panoee", "360° Imaging", "Adobe Premiere Pro", "WordPress"],
-    type: "Client Project", 
+    type: "Client Project",
 
     client: {
       name: "South Gloucestershire Council",
@@ -145,7 +131,7 @@ export const projects: Project[] = [
       title: "Showcase Video",
       embedUrl: "https://player.vimeo.com/video/1179406322",
       caption:
-      "A showcase film presenting the interactive tour and demonstrating how users explore the grotto digitally.",
+        "A showcase film presenting the interactive tour and demonstrating how users explore the grotto digitally.",
     },
 
     featuredLink: {

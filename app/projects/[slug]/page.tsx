@@ -140,7 +140,7 @@ export default async function ProjectDetailPage({
           />
         ) : null}
 
-        {project.type === "triptych" && project.triptych?.length ? (
+        {project.layout === "triptych" && project.triptych?.length ? (
           <ProjectTriptychSection project={project} />
         ) : null}
 

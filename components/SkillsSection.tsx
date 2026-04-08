@@ -51,6 +51,7 @@ const skillGroups: {
       { name: "Figma" },
       { name: "Netlify" },
       { name: "VS Code" },
+      { name: "Adobe Suite"},
       { name: "Blender" },
       { name: "Maya" },
       { name: "Python" },

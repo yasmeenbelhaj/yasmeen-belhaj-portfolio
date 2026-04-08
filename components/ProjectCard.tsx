@@ -65,9 +65,9 @@ export default function ProjectCard({ project }: { project: Project }) {
             })}
           </div>
 
-          <div className="mt-8 flex items-center justify-between">
+          <div className="mt-auto pt-8 flex items-center justify-between">
             <span className="text-xs uppercase tracking-[0.22em] text-brand-sand/80">
-              Case Study
+              {project.type}
             </span>
 
             <span className="group/arrow inline-flex items-center gap-1 text-sm text-brand-cream/80 transition-colors duration-200">

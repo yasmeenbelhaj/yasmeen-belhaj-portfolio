@@ -51,7 +51,7 @@ const skillGroups: {
       { name: "Figma" },
       { name: "Netlify" },
       { name: "VS Code" },
-      { name: "Adobe Suite"},
+      { name: "Adobe Suite" },
       { name: "Blender" },
       { name: "Maya" },
       { name: "Python" },
@@ -96,6 +96,15 @@ const cardVariants = {
   },
 };
 
+const bodyTextClass =
+  "text-[1.05rem] leading-[1.7] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]";
+
+const secondaryTextClass =
+  "text-[1rem] leading-[1.65] text-brand-cream/80 md:text-[1.08rem] lg:text-[1.14rem]";
+
+const pillTextClass =
+  "text-[0.9rem] text-brand-cream/85 md:text-[0.95rem] lg:text-[1rem]";
+
 export default function SkillsSection() {
   return (
     <section id="skills" className="bg-brand-black text-brand-cream">
@@ -107,17 +116,13 @@ export default function SkillsSection() {
           viewport={{ once: true, amount: 0.3 }}
           className="max-w-3xl"
         >
-          <h2 className="font-['the-seasons'] text-5xl font-bold tracking-wide text-white">
+          <h2 className="font-['the-seasons'] text-5xl font-bold leading-[1.1] tracking-wide text-white md:leading-[1.18]">
             Skills
           </h2>
 
           <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
-          <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-sand/90">
-            Front-End • Creative Tech • Workflow
-          </p>
-
-          <p className="mt-8 text-base leading-relaxed text-brand-cream/80">
+          <p className={`mt-8 ${bodyTextClass}`}>
             A selection of the technologies, tools, and creative systems I use
             across front-end development, interactive experiences, and real-time
             work.
@@ -149,11 +154,11 @@ export default function SkillsSection() {
 
               <div className="relative flex min-h-full flex-col">
                 <div>
-                  <h3 className="font-['the-seasons'] text-3xl font-bold tracking-wide text-white">
+                  <h3 className="font-['the-seasons'] text-3xl font-bold leading-[1.28] tracking-[0.03em] text-white">
                     {group.title}
                   </h3>
 
-                  <p className="mt-4 text-sm leading-relaxed text-brand-cream/80">
+                  <p className={`mt-4 ${secondaryTextClass}`}>
                     {group.description}
                   </p>
 
@@ -167,11 +172,11 @@ export default function SkillsSection() {
                     return (
                       <span
                         key={skill.name}
-                        className="inline-flex items-center gap-2 rounded-full border border-brand-sand/30 bg-brand-cream/[0.05] px-4 py-2 text-sm text-brand-cream/85 transition-colors duration-200 group-hover:border-brand-sand/40"
+                        className={`inline-flex items-center gap-[0.45rem] rounded-full border border-brand-sand/30 bg-brand-cream/[0.05] px-4 py-2 transition-colors duration-200 group-hover:border-brand-sand/40 ${pillTextClass}`}
                       >
                         {Icon ? (
                           <Icon
-                            className="h-[17px] w-[17px] shrink-0 text-brand-sand"
+                            className="h-[16px] w-[16px] shrink-0 translate-y-[-0.5px] text-brand-sand md:h-[17px] md:w-[17px] lg:h-[18px] lg:w-[18px]"
                             aria-hidden="true"
                           />
                         ) : (
@@ -180,6 +185,7 @@ export default function SkillsSection() {
                             aria-hidden="true"
                           />
                         )}
+
                         <span>{skill.name}</span>
                       </span>
                     );

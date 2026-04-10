@@ -47,6 +47,12 @@ const sketchReveal = {
   },
 };
 
+const uiLabelClass =
+  "text-[0.9rem] uppercase tracking-[0.18em] text-brand-sand/90 md:text-[0.95rem] lg:text-[1rem]";
+
+const bodyTextClass =
+  "text-[1.05rem] leading-[1.7] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]";
+  
 export default function TriptychSketchRow({
   index,
   title,
@@ -84,20 +90,15 @@ export default function TriptychSketchRow({
           className="mt-6 h-[2px] w-12 bg-brand-terracotta/80"
         />
 
-        <motion.p
-          variants={itemReveal}
-          className="mt-7 text-base leading-relaxed text-brand-cream/80 md:text-[1.05rem] md:leading-[1.85] lg:text-base lg:leading-relaxed"
-        >
+        <motion.p variants={itemReveal} className={`mt-7 ${bodyTextClass}`}>
           {description}
         </motion.p>
 
-        {interactionHint && (
+        {interactionHint ? (
           <motion.div variants={itemReveal} className="mt-10 hidden lg:block">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-brand-sand/90">
-              Interactions
-            </p>
+            <p className={uiLabelClass}>Interactions</p>
 
-            <ul className="mt-5 space-y-2 text-base leading-relaxed text-brand-cream/80 md:text-[0.98rem] md:leading-[1.8] lg:text-sm lg:leading-relaxed">
+            <ul className={`mt-5 space-y-2 ${bodyTextClass}`}>
               {interactionHint.map((hint, hintIndex) => (
                 <motion.li
                   key={`desktop-${hint}`}
@@ -115,7 +116,7 @@ export default function TriptychSketchRow({
               ))}
             </ul>
           </motion.div>
-        )}
+        ) : null}
       </div>
 
       <motion.div
@@ -132,13 +133,11 @@ export default function TriptychSketchRow({
           </div>
         </motion.div>
 
-        {interactionHint && (
+        {interactionHint ? (
           <motion.div variants={itemReveal} className="mt-8 w-full lg:hidden">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-brand-sand/90">
-              Interactions
-            </p>
+            <p className={uiLabelClass}>Interactions</p>
 
-            <ul className="mt-5 space-y-2 text-base leading-relaxed text-brand-cream/80 md:text-[0.98rem] md:leading-[1.8] lg:text-sm lg:leading-relaxed">
+            <ul className="mt-5 space-y-1.5 text-[1.05rem] leading-[1.6] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]">
               {interactionHint.map((hint, hintIndex) => (
                 <motion.li
                   key={`mobile-${hint}`}
@@ -156,7 +155,7 @@ export default function TriptychSketchRow({
               ))}
             </ul>
           </motion.div>
-        )}
+        ) : null}
       </motion.div>
     </motion.article>
   );

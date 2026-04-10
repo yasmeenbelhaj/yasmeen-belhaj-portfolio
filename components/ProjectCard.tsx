@@ -6,6 +6,18 @@ import { MotionDiv } from "./Motion";
 
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
+const cardLabelClass =
+  "text-[0.78rem] uppercase tracking-[0.18em] text-brand-sand/80 md:text-[0.82rem] lg:text-[0.86rem]";
+
+const uiTextClass =
+  "text-[0.95rem] text-brand-cream/80 md:text-[1rem] lg:text-[1.05rem]";
+
+const secondaryTextClass =
+  "text-[1rem] leading-[1.65] text-brand-cream/80 md:text-[1.08rem] lg:text-[1.14rem]";
+
+const pillTextClass =
+  "text-[0.9rem] text-brand-cream/85 md:text-[0.95rem] lg:text-[1rem]";
+
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <MotionDiv
@@ -22,17 +34,15 @@ export default function ProjectCard({ project }: { project: Project }) {
         <div className="flex h-full flex-col">
           <div className="flex items-start justify-between gap-4">
             <div className="max-w-[85%]">
-              <h3 className="font-['the-seasons'] text-3xl font-bold tracking-[0.04em] text-white">
+              <h3 className="font-['the-seasons'] text-3xl font-bold leading-[1.28] tracking-[0.03em] text-white">
                 {project.title}
               </h3>
 
-              <p className="mt-4 text-sm leading-relaxed text-brand-cream/80">
-                {project.tagline}
-              </p>
+              <p className={`mt-4 ${secondaryTextClass}`}>{project.tagline}</p>
             </div>
 
-            <span className="shrink-0 pt-1 text-[11px] uppercase tracking-[0.18em] text-brand-sand/80">
-              {project.year}
+            <span className="shrink-0 pt-1">
+              <span className={cardLabelClass}>{project.year}</span>
             </span>
           </div>
 
@@ -45,11 +55,11 @@ export default function ProjectCard({ project }: { project: Project }) {
               return (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-2 rounded-full border border-brand-sand/30 bg-brand-cream/[0.05] px-4 py-2 text-sm text-brand-cream/85 transition-colors duration-200 group-hover:border-brand-sand/40"
+                  className={`inline-flex items-center gap-[0.45rem] rounded-full border border-brand-sand/30 bg-brand-cream/[0.05] px-4 py-2 transition-colors duration-200 group-hover:border-brand-sand/40 ${pillTextClass}`}
                 >
                   {Icon ? (
                     <Icon
-                      className="h-[15px] w-[15px] shrink-0 text-brand-sand"
+                      className="h-[16px] w-[16px] shrink-0 translate-y-[-0.5px] text-brand-sand md:h-[17px] md:w-[17px] lg:h-[18px] lg:w-[18px]"
                       aria-hidden="true"
                     />
                   ) : (
@@ -65,15 +75,15 @@ export default function ProjectCard({ project }: { project: Project }) {
             })}
           </div>
 
-          <div className="mt-auto pt-8 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.22em] text-brand-sand/80">
+          <div className="mt-auto flex items-center justify-between pt-8">
+            <span className={`${cardLabelClass} max-w-[60%] leading-[1.4]`}>
               {project.type}
             </span>
 
-            <span className="group/arrow inline-flex items-center gap-1 text-sm text-brand-cream/80 transition-colors duration-200">
+            <span className="group/arrow inline-flex items-center gap-1.5 text-[0.82rem] text-brand-cream/80 transition-colors duration-200 md:text-[0.86rem] lg:text-[0.9rem]">
               <span>View project</span>
               <FiArrowUpRight
-                className="h-3.5 w-3.5 transition-transform duration-200 group-hover/arrow:-translate-y-[1px] group-hover/arrow:translate-x-[1px]"
+                className="h-3 w-3 transition-transform duration-200 group-hover/arrow:-translate-y-[1px] group-hover/arrow:translate-x-[1px]"               
                 aria-hidden="true"
               />
             </span>

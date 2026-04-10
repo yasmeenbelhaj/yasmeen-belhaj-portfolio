@@ -111,7 +111,7 @@ export const projects: Project[] = [
   },
 
   {
-    slug: "williams-champions-grotto",
+    slug: "william-champions-grotto",
     title: "William Champion’s Grotto: 360° Walkthrough",
     tagline:
       "Opening up a rarely accessible historic site through an interactive 360° walkthrough.",
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     },
 
     overview:
-      "This project focused on documenting and digitising William Champion’s Grotto, a Grade II listed heritage site in Warmley that is rarely open to the public. Working in collaboration with South Gloucestershire Council, the aim was to create an interactive digital experience that allows users to explore the space remotely, while also preserving it as a long-term record as the structure continues to deteriorate. The final outcome combines a 360° tour with a supporting showcase video to communicate both the functionality and the atmosphere of the space.",
+      "This project focused on digitally documenting William Champion’s Grotto, a Grade II listed heritage site in Warmley that is rarely open to the public. Working in collaboration with South Gloucestershire Council, the aim was to create an interactive digital experience that allows users to explore the space remotely, while also preserving it as a long-term record as the structure continues to deteriorate. The final outcome combines a 360° tour with a supporting showcase video to communicate both the functionality and the atmosphere of the space.",
 
     buildNotes: [
       "The project required detailed pre-production planning, including mapping navigation points, defining touchpoints, and preparing a structured shot list for capturing the grotto environment.",

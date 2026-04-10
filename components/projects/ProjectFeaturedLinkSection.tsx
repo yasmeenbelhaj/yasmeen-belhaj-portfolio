@@ -24,22 +24,24 @@ const mediaReveal = {
   },
 };
 
+const uiLabelClass =
+  "text-[0.9rem] uppercase tracking-[0.18em] text-brand-sand/90 md:text-[0.95rem] lg:text-[1rem]";
+
+const bodyTextClass =
+  "text-[1.05rem] leading-[1.7] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]";
+  
 export default function ProjectFeaturedLinkSection({
   feature,
   projectTitle,
 }: ProjectFeaturedLinkSectionProps) {
   return (
-    <section className="mt-28">
+    <section className="mt-20 md:mt-24">
       <div className="max-w-3xl">
         {feature.eyebrow ? (
-          <p className="text-xs uppercase tracking-[0.22em] text-brand-sand/90">
-            {feature.eyebrow}
-          </p>
+          <p className={uiLabelClass}>{feature.eyebrow}</p>
         ) : null}
 
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-brand-cream/75 md:text-[1.03rem] md:leading-[1.8]">
-          {feature.description}
-        </p>
+        <p className={`mt-5 ${bodyTextClass}`}>{feature.description}</p>
       </div>
 
       <motion.a
@@ -64,19 +66,19 @@ export default function ProjectFeaturedLinkSection({
           <div className="absolute inset-0 flex items-center justify-center px-6 text-center md:px-10">
             <div className="max-w-4xl">
               {feature.overlayTitle ? (
-                <h2 className="font-['the-seasons'] font-semibold text-[1.4rem] leading-tight tracking-wide text-white sm:text-3xl md:text-5xl lg:text-6xl [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
+                <h2 className="font-['the-seasons'] text-[1.4rem] font-semibold leading-tight tracking-wide text-white sm:text-3xl md:text-5xl lg:text-6xl [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
                   {feature.overlayTitle}
                 </h2>
               ) : null}
 
               {feature.overlaySubtitle ? (
-                <p className="mt-2 font-['the-seasons'] font-semibold text-[1.2rem] leading-tight tracking-wider text-white sm:text-2xl md:mt-4 md:text-4xl lg:text-5xl [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
+                <p className="mt-3 font-['the-seasons'] text-[1.2rem] font-semibold leading-tight tracking-[0.03em] text-white sm:text-2xl md:mt-4 md:text-4xl lg:text-5xl [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
                   {feature.overlaySubtitle}
                 </p>
               ) : null}
 
               {feature.ctaLabel ? (
-                <div className="mt-12 flex flex-col items-center gap-3 text-[0.8rem] tracking-wide text-white sm:text-lg md:mt-16 md:gap-5 md:text-2xl lg:text-3xl [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
+                <div className="mt-12 flex flex-col items-center gap-3 text-[0.95rem] tracking-[0.04em] text-white sm:text-lg md:mt-16 md:gap-5 md:text-2xl lg:text-3xl [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]">
                   <span>{feature.ctaLabel}</span>
                   <FiArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
                 </div>
@@ -85,7 +87,7 @@ export default function ProjectFeaturedLinkSection({
           </div>
 
           {feature.note ? (
-            <p className="absolute bottom-6 right-6 text-xs text-white/85 md:bottom-8 md:right-8 md:text-sm">
+            <p className="absolute right-6 bottom-6 text-[0.9rem] text-white md:right-8 md:bottom-8 md:text-[0.95rem] lg:text-[1rem]">
               {feature.note}
             </p>
           ) : null}

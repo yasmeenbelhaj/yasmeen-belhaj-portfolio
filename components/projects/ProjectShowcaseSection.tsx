@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { ProjectShowcase } from "../../content/projects";
 
@@ -23,37 +24,47 @@ const mediaReveal = {
   },
 };
 
+const bodyTextClass =
+  "text-[1.05rem] leading-[1.7] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]";
+  
 export default function ProjectShowcaseSection({
   showcase,
   projectTitle,
 }: ProjectShowcaseSectionProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   if (showcase.type !== "video" || !showcase.embedUrl) return null;
 
   return (
-    <section className="mt-24">
+    <section>
       <motion.div
-        className="w-full"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.18 }}
         variants={mediaReveal}
       >
-        <div className="aspect-video w-full overflow-hidden rounded-xl">
-          <iframe
-            src={showcase.embedUrl}
-            title={showcase.title ?? projectTitle}
-            className="h-full w-full"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-          />
+        <div className="aspect-video w-full overflow-hidden rounded-[1.25rem] bg-brand-cream/[0.03]">
+          {isMounted ? (
+            <iframe
+              src={showcase.embedUrl}
+              title={showcase.title ?? projectTitle}
+              className="h-full w-full"
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          ) : null}
         </div>
       </motion.div>
 
       {showcase.caption ? (
         <div className="mt-6 max-w-3xl">
-          <p className="text-base leading-relaxed text-brand-cream/80 md:text-[1.03rem] md:leading-[1.8]">
-            {showcase.caption}
-          </p>
+          <p className={bodyTextClass}>{showcase.caption}</p>
         </div>
       ) : null}
     </section>

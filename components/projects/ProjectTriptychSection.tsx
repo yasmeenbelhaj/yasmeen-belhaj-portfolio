@@ -20,12 +20,9 @@ export default function ProjectTriptychSection({
     "forest-cabin": <ForestCabinEmbed />,
   };
 
-  const eyebrow = project.triptychSection?.eyebrow ?? "Series";
-  const intro = project.triptychSection?.intro;
-
   return (
-    <section className="mt-24 md:mt-28">
-      <div className="rounded-[2rem] border border-brand-sand/15 bg-brand-cream/[0.03] px-5 py-5 sm:px-6 sm:py-6 md:px-10 md:py-10">
+    <section className="mt-20 md:mt-24">
+      <div className="rounded-[2rem] border border-brand-sand/15 bg-brand-cream/[0.03] px-6 py-6 md:px-10 md:py-10">
         <div className="space-y-16 md:space-y-20">
           {project.triptych.map((sketch, index) => (
             <TriptychSketchRow

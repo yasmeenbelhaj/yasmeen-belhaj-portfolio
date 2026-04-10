@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+const bodyTextClass =
+  "text-[1.05rem] leading-[1.7] text-brand-black/75 md:text-[1.18rem] lg:text-[1.28rem]";
+
 export default function AboutSection() {
   return (
     <section id="about" className="bg-brand-cream text-brand-black">
@@ -14,17 +17,13 @@ export default function AboutSection() {
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h2 className="font-['the-seasons'] font-bold text-5xl tracking-wide">
+          <h2 className="font-['the-seasons'] text-5xl font-bold leading-[1.1] tracking-wide">
             About
           </h2>
 
           <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
-          <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-olive/80">
-            Creative Technology • Interactive Systems • Web Dev
-          </p>
-
-          <div className="mt-8 space-y-6 text-base leading-relaxed text-brand-black/75">
+          <div className={`mt-8 space-y-6 ${bodyTextClass}`}>
             <p>
               I’m a front-end-focused software engineer working across web
               development, interactive systems, and creative technology.

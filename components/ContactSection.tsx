@@ -71,6 +71,18 @@ const contactItems: ContactItem[] = [
   },
 ];
 
+const bodyTextClass =
+  "text-[1.05rem] leading-[1.7] text-black/75 md:text-[1.18rem] lg:text-[1.28rem]";
+
+const secondaryTextClass =
+  "text-[1rem] leading-[1.65] md:text-[1.08rem] lg:text-[1.14rem]";
+
+const cardLabelClass =
+  "text-[0.78rem] uppercase tracking-[0.18em] text-brand-olive/75 md:text-[0.82rem] lg:text-[0.86rem]";
+
+const buttonTextClass =
+  "text-[0.9rem] md:text-[0.95rem] lg:text-[1rem]";
+
 export default function ContactSection() {
   return (
     <section
@@ -85,17 +97,13 @@ export default function ContactSection() {
           viewport={{ once: true, amount: 0.3 }}
           className="max-w-[52rem]"
         >
-          <h2 className="font-['the-seasons'] text-5xl font-bold tracking-wide text-black">
+          <h2 className="font-['the-seasons'] text-5xl font-bold leading-[1.1] tracking-wide text-black md:leading-[1.18]">
             Contact
           </h2>
 
           <div className="mt-6 h-[2px] w-20 bg-brand-terracotta/80" />
 
-          <p className="mt-6 text-xs uppercase tracking-[0.22em] text-brand-olive/80">
-            Graduate Roles • Front-End • Creative Technology
-          </p>
-
-          <p className="mt-8 max-w-[46rem] text-base leading-relaxed text-black sm:text-[1.05rem]">
+          <p className={`mt-8 max-w-[46rem] ${bodyTextClass}`}>
             I’m currently seeking graduate and early-career opportunities in
             software engineering, front-end development, and creative
             technology. For roles, collaborations, or conversation, feel free
@@ -129,16 +137,16 @@ export default function ContactSection() {
                       </div>
 
                       <div>
-                        <p className="text-[11px] uppercase tracking-[0.18em] text-brand-olive/75">
-                          {item.label}
-                        </p>
-                        <p className="mt-2 text-sm leading-relaxed text-brand-rust/85 sm:text-[15px]">
+                        <p className={cardLabelClass}>{item.label}</p>
+                        <p
+                          className={`${secondaryTextClass} mt-2 text-brand-rust/85`}
+                        >
                           {item.value}
                         </p>
                       </div>
                     </div>
 
-                    <FiArrowUpRight className="mt-1 h-[18px] w-[18px] shrink-0 text-brand-olive/70 transition-transform duration-300 group-hover:translate-x-[2px] group-hover:-translate-y-[2px] group-hover:text-brand-terracotta" />
+                    <FiArrowUpRight className="mt-1 h-[18px] w-[18px] shrink-0 text-brand-olive/70 transition-transform duration-300 group-hover:-translate-y-[2px] group-hover:translate-x-[2px] group-hover:text-brand-terracotta" />
                   </div>
                 </a>
               );
@@ -149,11 +157,13 @@ export default function ContactSection() {
             variants={itemReveal}
             className="flex h-full flex-col items-center justify-center rounded-[1.75rem] border border-brand-sand/40 bg-brand-rust px-6 py-8 text-center text-brand-cream sm:px-7 sm:py-9 lg:px-8 lg:py-10"
           >
-            <h3 className="font-['the-seasons'] text-[2.15rem] font-bold leading-tight tracking-wide text-white">
+            <h3 className="font-['the-seasons'] text-[2.15rem] font-bold leading-[1.18] tracking-[0.03em] text-white">
               CV
             </h3>
 
-            <p className="mt-4 max-w-[22rem] text-sm leading-relaxed text-brand-cream/80">
+            <p
+              className={`mt-4 max-w-[22rem] ${secondaryTextClass} text-brand-cream/80`}
+            >
               A concise overview of my background, technical experience, and
               selected work.
             </p>
@@ -162,7 +172,7 @@ export default function ContactSection() {
               <a
                 href="/yasmeen_belhaj-cv.pdf"
                 download
-                className="inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-brand-gold/[0.08] px-5 py-3 text-sm text-brand-cream/80 transition-[border-color,background-color,transform] duration-300 hover:-translate-y-[1px] hover:border-brand-gold/70 hover:bg-brand-gold/[0.14]"
+                className={`inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-brand-gold/[0.08] px-5 py-3 text-brand-cream/80 transition-[border-color,background-color,transform] duration-300 hover:-translate-y-[1px] hover:border-brand-gold/70 hover:bg-brand-gold/[0.14] ${buttonTextClass}`}
               >
                 <FiDownload className="h-[16px] w-[16px]" />
                 <span>Download CV</span>
@@ -172,7 +182,7 @@ export default function ContactSection() {
                 href="/yasmeen_belhaj-cv.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2 text-sm text-brand-sand transition-colors duration-300 hover:text-brand-cream/80"
+                className={`group inline-flex items-center gap-2 text-brand-sand transition-colors duration-300 hover:text-brand-cream/80 ${buttonTextClass}`}
               >
                 <span>View in browser</span>
                 <FiArrowUpRight className="h-[15px] w-[15px] opacity-80 transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]" />

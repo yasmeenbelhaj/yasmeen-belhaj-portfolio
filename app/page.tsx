@@ -12,6 +12,42 @@ import { projects } from "../content/projects";
 const bodyTextClass =
   "text-[1.05rem] leading-[1.7] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]";
 
+const smoothEase = [0.22, 1, 0.36, 1] as const;
+
+const sectionIntro = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.75,
+      ease: smoothEase,
+    },
+  },
+};
+
+const cardsContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: smoothEase,
+    },
+  },
+};
+
 export default function HomePage() {
   const heroSceneRef = useRef<HTMLDivElement | null>(null);
   const projectsTopRef = useRef<HTMLElement | null>(null);
@@ -148,7 +184,13 @@ export default function HomePage() {
               className="min-h-[100svh] rounded-t-[2rem] bg-brand-black text-brand-cream"
             >
               <div className="mx-auto max-w-6xl px-6 py-24">
-                <header className="max-w-3xl">
+                <motion.div
+                  variants={sectionIntro}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="max-w-3xl"
+                >
                   <h2 className="font-['the-seasons'] text-5xl font-bold leading-[1.1] tracking-wide text-white md:leading-[1.18]">
                     Projects
                   </h2>
@@ -156,15 +198,24 @@ export default function HomePage() {
                   <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
                   <p className={`mt-8 ${bodyTextClass}`}>
-                    Selected projects exploring front-end engineering, interactive systems, and creative&nbsp;technology.
+                    Selected projects exploring front-end engineering,
+                    interactive systems, and creative&nbsp;technology.
                   </p>
-                </header>
+                </motion.div>
 
-                <div className="mt-14 grid gap-8 sm:grid-cols-2">
+                <motion.div
+                  variants={cardsContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="mt-14 grid gap-8 sm:grid-cols-2"
+                >
                   {projects.map((project) => (
-                    <ProjectCard key={project.slug} project={project} />
+                    <motion.div key={project.slug} variants={cardVariants}>
+                      <ProjectCard project={project} />
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </section>
           </motion.section>

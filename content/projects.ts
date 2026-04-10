@@ -97,7 +97,7 @@ export const projects: Project[] = [
           "Press 1 — Launch a shooting star",
           "Press 2 — Trigger a meteor shower",
           "Press 0 — Clear the sky",
-          "Click and hold the cabin window — Turn on the light",
+          "Click & hold the cabin window — Turn on the light",
         ],
       },
     ],

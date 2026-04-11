@@ -1,3 +1,7 @@
+//Daniel Shiffman - The Coding Train p5.js example
+//Used to enusre functionality of p5Background
+//To be changed to custom p5.js drawing once site structure complete
+
 "use client";
 
 import { useEffect, useRef } from "react";

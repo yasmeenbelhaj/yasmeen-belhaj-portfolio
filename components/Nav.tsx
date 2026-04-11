@@ -146,7 +146,7 @@ export default function Nav() {
         <Link
           href="/"
           onClick={(e) => handleNavClick(e, "/")}
-          className="font-['the-seasons'] text-[1.1rem] md:text-[1.2rem] font-bold leading-[1.1] tracking-[0.1em] text-white"
+          className="font-['the-seasons'] uppercase text-[1.1rem] md:text-[1.2rem] font-bold leading-[1.1] tracking-[0.1em] text-white"
         >
           Yasmeen Belhaj
         </Link>

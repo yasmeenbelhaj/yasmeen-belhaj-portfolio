@@ -5,6 +5,7 @@ import TriptychSketchRow from "./generative-drawing-triptych/TriptychSketchRow";
 
 import type { Project } from "../../content/projects";
 
+/* Props */
 type ProjectTriptychSectionProps = {
   project: Project;
 };
@@ -12,8 +13,10 @@ type ProjectTriptychSectionProps = {
 export default function ProjectTriptychSection({
   project,
 }: ProjectTriptychSectionProps) {
+  /* Conditional Render */
   if (!project.triptych?.length) return null;
 
+  /* Sketch Mapping */
   const sketchMap: Record<string, React.ReactNode> = {
     "snowy-mountains": <SnowyMountainsEmbed />,
     "city-skyline": <CitySkylineEmbed />,
@@ -21,10 +24,17 @@ export default function ProjectTriptychSection({
   };
 
   return (
+    /* Triptych Section */
     <section className="mt-20 md:mt-24">
+      
+      {/* Section Container */}
       <div className="rounded-[2rem] border border-brand-sand/15 bg-brand-cream/[0.03] px-6 py-6 md:px-10 md:py-10">
+        
+        {/* Sketch Rows */}
         <div className="space-y-16 md:space-y-20">
           {project.triptych.map((sketch, index) => (
+            
+            /* Sketch Row */
             <TriptychSketchRow
               key={sketch.slug}
               index={index}

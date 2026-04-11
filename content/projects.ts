@@ -1,3 +1,5 @@
+/* Project Types */
+
 export type ProjectSketch = {
   title: string;
   slug: string;
@@ -60,7 +62,11 @@ export type Project = {
   links?: ProjectLink[];
 };
 
+/* Project Data */
+
 export const projects: Project[] = [
+  
+  /* Generative Drawing Triptych Project */
   {
     slug: "generative-drawing-triptych",
     title: "Generative Drawing Triptych",
@@ -110,6 +116,7 @@ export const projects: Project[] = [
     ],
   },
 
+  /* William Champion's Grotto Project*/
   {
     slug: "william-champions-grotto",
     title: "William Champion’s Grotto: 360° Walkthrough",

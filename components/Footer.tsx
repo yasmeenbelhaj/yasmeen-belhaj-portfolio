@@ -1,5 +1,6 @@
 import { FiArrowUpRight } from "react-icons/fi";
 
+/* Typography Tokens */
 const secondaryTextClass =
   "text-[1rem] leading-[1.65] text-white/80 md:text-[1.08rem] lg:text-[1.14rem]";
 
@@ -11,13 +12,20 @@ const footerLinkClass =
 
 export default function Footer() {
   return (
+    /* Footer */
     <footer id="footer" className="mt-28 bg-brand-black text-white">
+      
+      {/* Top Divider */}
       <div className="mx-auto max-w-6xl px-6">
         <div className="border-t border-brand-sand/30" />
       </div>
 
       <div className="mx-auto max-w-6xl px-6 py-10">
+        
+        {/* Footer Content */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          
+          {/* Footer Meta */}
           <div className="space-y-2">
             <p className={secondaryTextClass}>
               © {new Date().getFullYear()} Yasmeen Belhaj
@@ -28,7 +36,10 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Social Links */}
           <div className="flex items-center gap-6">
+            
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/yasmeenbelhaj"
               target="_blank"
@@ -39,6 +50,7 @@ export default function Footer() {
               <FiArrowUpRight className="h-3.5 w-3.5 opacity-70 transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]" />
             </a>
 
+            {/* GitHub */}
             <a
               href="https://github.com/yasmeenbelhaj"
               target="_blank"

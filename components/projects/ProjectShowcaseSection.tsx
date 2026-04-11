@@ -4,13 +4,16 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { ProjectShowcase } from "../../content/projects";
 
+/* Props */
 type ProjectShowcaseSectionProps = {
   showcase: ProjectShowcase;
   projectTitle: string;
 };
 
+/* Motion Token */
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
+/* Media Reveal */
 const mediaReveal = {
   hidden: { opacity: 0, y: 30, scale: 0.985 },
   visible: {
@@ -24,6 +27,7 @@ const mediaReveal = {
   },
 };
 
+/* Typography Token */
 const bodyTextClass =
   "text-[1.05rem] leading-[1.7] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]";
   
@@ -33,22 +37,28 @@ export default function ProjectShowcaseSection({
 }: ProjectShowcaseSectionProps) {
   const [isMounted, setIsMounted] = useState(false);
 
+  /* Mount State */
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  /* Conditional Render */
   if (showcase.type !== "video" || !showcase.embedUrl) return null;
 
   return (
+    /* Showcase Section */
     <section>
+      {/* Showcase Media */}
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.18 }}
         variants={mediaReveal}
       >
+        {/* Video Frame */}
         <div className="aspect-video w-full overflow-hidden rounded-[1.25rem] bg-brand-cream/[0.03]">
           {isMounted ? (
+            /* Embedded Video */
             <iframe
               src={showcase.embedUrl}
               title={showcase.title ?? projectTitle}
@@ -63,6 +73,7 @@ export default function ProjectShowcaseSection({
       </motion.div>
 
       {showcase.caption ? (
+        /* Showcase Caption */
         <div className="mt-6 max-w-3xl">
           <p className={bodyTextClass}>{showcase.caption}</p>
         </div>

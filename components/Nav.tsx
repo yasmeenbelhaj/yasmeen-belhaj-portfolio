@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 
+/* Primary Navigation Links */
 const links = [
   { href: "/", label: "Home" },
   { href: "/#projects", label: "Projects" },
@@ -14,6 +15,7 @@ const links = [
   { href: "/#contact", label: "Contact" },
 ];
 
+/* Mobile Navigation Links (includes CV) */
 const mobileLinks = [
   ...links,
   { href: "/yasmeen_belhaj-cv.pdf", label: "CV", external: true },
@@ -24,11 +26,13 @@ export default function Nav() {
   const [hash, setHash] = React.useState("");
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  /* Sync hash + close mobile on route change */
   React.useEffect(() => {
     setHash(window.location.hash || "");
     setMobileOpen(false);
   }, [pathname]);
 
+  /* Track hash changes */
   React.useEffect(() => {
     const updateHash = () => setHash(window.location.hash || "");
     updateHash();
@@ -42,6 +46,7 @@ export default function Nav() {
     };
   }, []);
 
+  /* Close mobile menu on Escape */
   React.useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileOpen(false);
@@ -51,6 +56,7 @@ export default function Nav() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  /* Lock scroll when mobile menu is open */
   React.useEffect(() => {
     if (!mobileOpen) return;
 
@@ -62,6 +68,7 @@ export default function Nav() {
     };
   }, [mobileOpen]);
 
+  /* Smooth scroll handler */
   const scrollToSection = (targetHash: string) => {
     if (targetHash === "#projects") {
       window.dispatchEvent(new Event("scroll-to-projects"));
@@ -84,6 +91,7 @@ export default function Nav() {
     setHash(targetHash);
   };
 
+  /* Navigation click handler */
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
@@ -111,6 +119,7 @@ export default function Nav() {
     setMobileOpen(false);
   };
 
+  /* Active link state */
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/" && hash === "";
     if (href.startsWith("/#")) {
@@ -119,7 +128,7 @@ export default function Nav() {
     return pathname === href;
   };
 
-  // Desktop typography refinement
+  /* Desktop typography refinement */
   const desktopLinkClass = (active: boolean) =>
     [
       "relative inline-block text-[0.78rem] md:text-[0.82rem] lg:text-[0.86rem] uppercase tracking-[0.18em]",
@@ -132,7 +141,8 @@ export default function Nav() {
   return (
     <header className="relative z-50 w-full border-b border-brand-sand/30 bg-black">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        {/* ✨ UPDATED NAME (editorial wordmark) */}
+        
+        {/* Wordmark – Link to Home */}
         <Link
           href="/"
           onClick={(e) => handleNavClick(e, "/")}
@@ -141,7 +151,10 @@ export default function Nav() {
           Yasmeen Belhaj
         </Link>
 
+        {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 sm:flex">
+          
+          {/* Navigation Links */}
           <ul className="flex items-center gap-6">
             {links.map((l) => {
               const active = isActive(l.href);
@@ -172,7 +185,7 @@ export default function Nav() {
           </Link>
         </div>
 
-        {/* MOBILE BUTTON — unchanged */}
+        {/* Mobile Menu Toggle */}
         <button
           type="button"
           className="inline-flex items-center justify-center rounded-md p-2 text-white/90 transition hover:bg-white/10 hover:text-white sm:hidden"
@@ -204,10 +217,11 @@ export default function Nav() {
         </button>
       </nav>
 
-      {/* MOBILE DRAWER — unchanged */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <>
+            {/* Overlay */}
             <motion.button
               type="button"
               aria-label="Close menu overlay"
@@ -218,6 +232,7 @@ export default function Nav() {
               onClick={() => setMobileOpen(false)}
             />
 
+            {/* Drawer Panel */}
             <motion.aside
               id="mobile-drawer"
               className="fixed right-0 top-0 z-50 h-dvh w-[84%] max-w-sm border-l border-white/10 bg-black sm:hidden"
@@ -226,7 +241,89 @@ export default function Nav() {
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.22 }}
             >
-              {/* unchanged */}
+              <div className="flex h-full flex-col px-6 pt-6">
+                
+                {/* Drawer Header */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs tracking-widest text-white/60">
+                    MENU
+                  </span>
+
+                  {/* Close Button */}
+                  <button
+                    type="button"
+                    className="inline-flex items-center justify-center rounded-md p-2 text-white/90 transition hover:bg-white/10 hover:text-white"
+                    aria-label="Close menu"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="text-lg leading-none">✕</span>
+                  </button>
+                </div>
+
+                {/* Mobile Navigation Links */}
+                <motion.ul
+                  className="mt-10 flex flex-col gap-6"
+                  initial="hidden"
+                  animate="show"
+                  exit="hidden"
+                  variants={{
+                    hidden: {},
+                    show: { transition: { staggerChildren: 0.06 } },
+                  }}
+                >
+                  {mobileLinks.map((l) => {
+                    const active = !("external" in l) && isActive(l.href);
+
+                    return (
+                      <motion.li
+                        key={l.href}
+                        variants={{
+                          hidden: { opacity: 0, x: 10 },
+                          show: { opacity: 1, x: 0 },
+                        }}
+                        transition={{ duration: 0.18 }}
+                      >
+                        <Link
+                          href={l.href}
+                          target={
+                            "external" in l && l.external ? "_blank" : undefined
+                          }
+                          rel={
+                            "external" in l && l.external
+                              ? "noreferrer"
+                              : undefined
+                          }
+                          onClick={(e) => {
+                            if ("external" in l && l.external) {
+                              setMobileOpen(false);
+                              return;
+                            }
+                            handleNavClick(e, l.href);
+                          }}
+                          className={[
+                            "group relative inline-block font-['the-seasons'] text-2xl font-medium tracking-wider text-white/90 hover:text-white",
+                            "after:absolute after:left-0 after:-bottom-3 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-brand-sand after:transition-transform after:duration-200 after:content-['']",
+                            "hover:after:scale-x-100",
+                            active ? "text-white after:scale-x-100" : "",
+                          ].join(" ")}
+                        >
+                          <span className="flex items-center gap-2">
+                            {l.label}
+                            {"external" in l && l.external && (
+                              <FiArrowUpRight className="h-4 w-4 opacity-80 transition-transform duration-200 group-hover:-translate-y-[1px] group-hover:translate-x-[1px]" />
+                            )}
+                          </span>
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
+                </motion.ul>
+
+                {/* Footer Meta */}
+                <div className="mt-auto pb-8 pt-10 text-xs text-white/50">
+                  © {new Date().getFullYear()} Yasmeen Belhaj
+                </div>
+              </div>
             </motion.aside>
           </>
         )}

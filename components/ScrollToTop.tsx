@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
+  /* Scroll Visibility Logic */
   useEffect(() => {
     const handleScroll = () => {
       setVisible(window.scrollY > 400);
@@ -17,6 +18,7 @@ export default function ScrollToTop() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* Scroll To Top Action */
   const scrollToTop = () =>
     window.scrollTo({
       top: 0,
@@ -24,6 +26,7 @@ export default function ScrollToTop() {
     });
 
   return (
+    /* Scroll To Top Control */
     <AnimatePresence>
       {visible && (
         <motion.button
@@ -48,6 +51,7 @@ export default function ScrollToTop() {
           "
           aria-label="Scroll to top"
         >
+          {/* Up Arrow Icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

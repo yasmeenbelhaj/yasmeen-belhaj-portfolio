@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { techIcons } from "../lib/techIcons";
 
+/* Skill Type */
 type Skill = {
   name: string;
 };
 
+/* Skills Data */
 const skillGroups: {
   title: string;
   description: string;
@@ -60,8 +62,10 @@ const skillGroups: {
   },
 ];
 
+/* Motion Tokens */
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
+/* Section Intro Animation */
 const sectionIntro = {
   hidden: { opacity: 0, y: 24 },
   visible: {
@@ -74,6 +78,7 @@ const sectionIntro = {
   },
 };
 
+/* Cards Container Animation */
 const cardsContainer = {
   hidden: {},
   visible: {
@@ -84,6 +89,7 @@ const cardsContainer = {
   },
 };
 
+/* Card Animation */
 const cardVariants = {
   hidden: { opacity: 0, y: 28 },
   visible: {
@@ -96,6 +102,7 @@ const cardVariants = {
   },
 };
 
+/* Typography Tokens */
 const bodyTextClass =
   "text-[1.05rem] leading-[1.7] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]";
 
@@ -107,8 +114,11 @@ const pillTextClass =
 
 export default function SkillsSection() {
   return (
+    /* Skills Section */
     <section id="skills" className="bg-brand-black text-brand-cream">
       <div className="mx-auto max-w-6xl px-6 py-24">
+        
+        {/* Section Intro */}
         <motion.div
           variants={sectionIntro}
           initial="hidden"
@@ -116,12 +126,15 @@ export default function SkillsSection() {
           viewport={{ once: true, amount: 0.3 }}
           className="max-w-3xl"
         >
+          {/* Section Title */}
           <h2 className="font-['the-seasons'] text-5xl font-bold leading-[1.1] tracking-wide text-white md:leading-[1.18]">
             Skills
           </h2>
 
+          {/* Section Divider */}
           <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
+          {/* Section Description */}
           <p className={`mt-8 ${bodyTextClass}`}>
             A selection of the technologies, tools, and creative systems I use
             across front-end development, interactive experiences, and real-time
@@ -129,6 +142,7 @@ export default function SkillsSection() {
           </p>
         </motion.div>
 
+        {/* Skills Grid */}
         <motion.div
           variants={cardsContainer}
           initial="hidden"
@@ -137,6 +151,8 @@ export default function SkillsSection() {
           className="mt-14 grid gap-8 md:grid-cols-3"
         >
           {skillGroups.map((group) => (
+            
+            /* Skill Group Card */
             <motion.article
               key={group.title}
               variants={cardVariants}
@@ -147,12 +163,16 @@ export default function SkillsSection() {
               }}
               className="group relative overflow-hidden rounded-[1.75rem] border border-brand-sand/30 bg-brand-cream/[0.04] p-7 transition-[border-color,background-color,box-shadow] duration-300 hover:border-brand-gold/45 hover:bg-brand-cream/[0.06] hover:shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
             >
+              
+              {/* Card Glow / Ambient Effect */}
               <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-brand-gold/10 via-brand-gold/[0.04] to-transparent" />
                 <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-gold/[0.08] blur-3xl" />
               </div>
 
               <div className="relative flex min-h-full flex-col">
+                
+                {/* Card Header */}
                 <div>
                   <h3 className="font-['the-seasons'] text-3xl font-bold leading-[1.28] tracking-[0.03em] text-white">
                     {group.title}
@@ -162,9 +182,11 @@ export default function SkillsSection() {
                     {group.description}
                   </p>
 
+                  {/* Card Divider */}
                   <div className="mt-6 h-px w-full bg-brand-sand/15 transition-colors duration-300 group-hover:bg-brand-gold/20" />
                 </div>
 
+                {/* Skill Pills */}
                 <div className="mt-6 flex flex-wrap gap-3">
                   {group.skills.map((skill) => {
                     const Icon = techIcons[skill.name];
@@ -174,6 +196,8 @@ export default function SkillsSection() {
                         key={skill.name}
                         className={`inline-flex items-center gap-[0.45rem] rounded-full border border-brand-sand/30 bg-brand-cream/[0.05] px-4 py-2 transition-colors duration-200 group-hover:border-brand-sand/40 ${pillTextClass}`}
                       >
+                        
+                        {/* Skill Icon */}
                         {Icon ? (
                           <Icon
                             className="h-[16px] w-[16px] shrink-0 translate-y-[-0.5px] text-brand-sand md:h-[17px] md:w-[17px] lg:h-[18px] lg:w-[18px]"
@@ -186,6 +210,7 @@ export default function SkillsSection() {
                           />
                         )}
 
+                        {/* Skill Label */}
                         <span>{skill.name}</span>
                       </span>
                     );

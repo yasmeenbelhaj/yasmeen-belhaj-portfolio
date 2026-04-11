@@ -1,6 +1,6 @@
-//Daniel Shiffman - The Coding Train p5.js example
-//Used to enusre functionality of p5Background
-//To be changed to custom p5.js drawing once site structure complete
+// Daniel Shiffman / The Coding Train p5.js example
+// Temporary sketch used to validate P5Background functionality
+// To be replaced with a custom p5.js drawing once the site structure is complete
 
 "use client";
 
@@ -12,17 +12,20 @@ export default function P5Background() {
   useEffect(() => {
     let instance: any;
 
+    /* Load p5 Instance */
     const loadP5 = async () => {
       const p5 = (await import("p5")).default;
 
       if (!containerRef.current) return;
 
+      /* Sketch Setup */
       const sketch = (s: any) => {
         const getW = () =>
           containerRef.current?.clientWidth ?? window.innerWidth;
         const getH = () =>
           containerRef.current?.clientHeight ?? window.innerHeight;
 
+        /* Canvas Setup */
         s.setup = () => {
           const canvas = s.createCanvas(getW(), getH());
           canvas.parent(containerRef.current!);
@@ -30,18 +33,20 @@ export default function P5Background() {
           s.background(244, 235, 221);
         };
 
+        /* Interactive Cursor Drawing */
         s.draw = () => {
-            if (s.mouseIsPressed === true) {
-                s.fill(0);
-                s.stroke(255);
-            } else {
-                s.fill(255)
-                s.stroke(0);
-            }
+          if (s.mouseIsPressed === true) {
+            s.fill(0);
+            s.stroke(255);
+          } else {
+            s.fill(255);
+            s.stroke(0);
+          }
 
-            s.circle(s.mouseX, s.mouseY, 100);
+          s.circle(s.mouseX, s.mouseY, 100);
         };
 
+        /* Responsive Canvas Resize */
         s.windowResized = () => {
           s.resizeCanvas(getW(), getH());
         };
@@ -52,10 +57,12 @@ export default function P5Background() {
 
     loadP5();
 
+    /* Cleanup p5 Instance */
     return () => {
       if (instance) instance.remove();
     };
   }, []);
 
+  /* P5 Canvas Container */
   return <div ref={containerRef} className="h-full w-full" />;
 }

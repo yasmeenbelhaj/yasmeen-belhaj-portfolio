@@ -9,11 +9,14 @@ import SkillsSection from "../components/SkillsSection";
 import ContactSection from "../components/ContactSection";
 import { projects } from "../content/projects";
 
+/* Typography Token */
 const bodyTextClass =
   "text-[1.05rem] leading-[1.7] text-brand-cream/80 md:text-[1.18rem] lg:text-[1.28rem]";
 
+/* Motion Token */
 const smoothEase = [0.22, 1, 0.36, 1] as const;
 
+/* Section Intro Animation */
 const sectionIntro = {
   hidden: { opacity: 0, y: 24 },
   visible: {
@@ -26,6 +29,7 @@ const sectionIntro = {
   },
 };
 
+/* Cards Container Animation */
 const cardsContainer = {
   hidden: {},
   visible: {
@@ -36,6 +40,7 @@ const cardsContainer = {
   },
 };
 
+/* Card Reveal Animation */
 const cardVariants = {
   hidden: { opacity: 0, y: 28 },
   visible: {
@@ -49,13 +54,16 @@ const cardVariants = {
 };
 
 export default function HomePage() {
+  /* Section Refs */
   const heroSceneRef = useRef<HTMLDivElement | null>(null);
   const projectsTopRef = useRef<HTMLElement | null>(null);
 
+  /* Page State */
   const [skipIntro, setSkipIntro] = useState(false);
   const [forceProjectsTop, setForceProjectsTop] = useState(false);
   const [sketchKey, setSketchKey] = useState(0);
 
+  /* Skip Hero When Opening Projects Anchor */
   useLayoutEffect(() => {
     if (window.location.hash === "#projects") {
       setSkipIntro(true);
@@ -66,6 +74,7 @@ export default function HomePage() {
     }
   }, []);
 
+  /* Scroll To Projects Event */
   useEffect(() => {
     const handler = () => {
       setForceProjectsTop(true);
@@ -91,16 +100,19 @@ export default function HomePage() {
     return () => window.removeEventListener("scroll-to-projects", handler);
   }, []);
 
+  /* Hero Scroll Progress */
   const { scrollYProgress: heroProgress } = useScroll({
     target: heroSceneRef,
     offset: ["start start", "end start"],
   });
 
+  /* Projects Threshold Progress */
   const { scrollYProgress: projectsTopProgress } = useScroll({
     target: projectsTopRef,
     offset: ["start end", "start start"],
   });
 
+  /* Scroll-Based Transforms */
   const heroColorFade = useTransform(heroProgress, [0, 0.36], [0, 1]);
   const heroOpacity = useTransform(projectsTopProgress, [0.999, 1], [1, 0]);
   const projectsY = useTransform(heroProgress, [0, 0.45], [140, 0]);
@@ -111,22 +123,30 @@ export default function HomePage() {
   const scrollBgOpacity = useTransform(projectsY, [140, 135], [0.85, 0]);
 
   return (
+    /* Homepage */
     <div className="relative bg-brand-black">
       <div className="relative">
+        
+        {/* Hero Scene */}
         <div ref={heroSceneRef} className="relative min-h-[180svh]">
+          
+          {/* Fixed Hero Layer */}
           <motion.section
             style={{ opacity: heroOpacity }}
             className="pointer-events-none fixed top-0 left-0 h-[100svh] w-full overflow-hidden bg-brand-cream"
           >
+            {/* P5 Background */}
             <div className="pointer-events-auto absolute inset-0 z-0">
               <P5Background key={sketchKey} />
             </div>
 
+            {/* Hero Colour Overlay */}
             <motion.div
               style={{ opacity: heroColorFade }}
               className="pointer-events-none absolute inset-0 z-10 bg-brand-rust"
             />
 
+            {/* Hero Title Block */}
             <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-6">
               <motion.div style={{ scale: heroScale }} className="text-center">
                 <h1 className="font-['the-seasons'] text-6xl font-bold tracking-[0.08em] text-brand-black sm:text-6xl lg:text-7xl">
@@ -140,21 +160,25 @@ export default function HomePage() {
               </motion.div>
             </div>
 
+            {/* Scroll Indicator */}
             <motion.div
               style={{ opacity: scrollIndicatorOpacity }}
               className="pointer-events-none absolute bottom-5 left-1/2 z-20 -translate-x-1/2 sm:bottom-16 lg:bottom-20"
               aria-hidden="true"
             >
+              {/* Scroll Indicator Background */}
               <motion.div
                 style={{ opacity: scrollBgOpacity }}
                 className="absolute inset-0 rounded-full bg-brand-cream/85 backdrop-blur-sm"
               />
 
+              {/* Scroll Indicator Content */}
               <div className="relative flex flex-col items-center px-5 py-3">
                 <span className="text-[10px] uppercase tracking-[0.24em] text-brand-black/70">
                   Scroll
                 </span>
 
+                {/* Scroll Indicator Line */}
                 <div className="mt-2 h-10 w-px overflow-hidden bg-brand-black/15">
                   <motion.div
                     className="w-px bg-brand-black/70"
@@ -171,6 +195,7 @@ export default function HomePage() {
             </motion.div>
           </motion.section>
 
+          {/* Clear Sketch Button */}
           <motion.button
             style={{ opacity: restartButtonOpacity }}
             type="button"
@@ -180,16 +205,20 @@ export default function HomePage() {
             Clear Sketch
           </motion.button>
 
+          {/* Projects Transition Layer */}
           <motion.section
             style={{ y: skipIntro || forceProjectsTop ? 0 : projectsY }}
             className="relative z-10 pt-[100svh]"
           >
+            {/* Projects Section */}
             <section
               id="projects"
               ref={projectsTopRef}
               className="min-h-[100svh] rounded-t-[2rem] bg-brand-black text-brand-cream"
             >
               <div className="mx-auto max-w-6xl px-6 py-24">
+                
+                {/* Section Intro */}
                 <motion.div
                   variants={sectionIntro}
                   initial="hidden"
@@ -197,19 +226,22 @@ export default function HomePage() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="max-w-3xl"
                 >
+                  {/* Section Title */}
                   <h2 className="font-['the-seasons'] text-5xl font-bold leading-[1.1] tracking-wide text-white md:leading-[1.18]">
                     Projects
                   </h2>
 
+                  {/* Section Divider */}
                   <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
+                  {/* Section Description */}
                   <p className={`mt-8 ${bodyTextClass}`}>
                     Selected projects exploring front-end engineering,
                     interactive systems, and creative&nbsp;technology.
                   </p>
                 </motion.div>
 
-                {/* ✅ FIXED GRID */}
+                {/* Projects Grid */}
                 <motion.div
                   variants={cardsContainer}
                   initial="hidden"
@@ -218,6 +250,7 @@ export default function HomePage() {
                   className="mt-14 grid gap-8 sm:grid-cols-2 items-stretch"
                 >
                   {projects.map((project) => (
+                    /* Project Card Wrapper */
                     <motion.div
                       key={project.slug}
                       variants={cardVariants}
@@ -232,6 +265,7 @@ export default function HomePage() {
           </motion.section>
         </div>
 
+        {/* Supporting Sections */}
         <div className="relative z-10">
           <AboutSection />
           <SkillsSection />

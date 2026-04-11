@@ -7,8 +7,10 @@ import ProjectTriptychSection from "../../../components/projects/ProjectTriptych
 import ProjectShowcaseSection from "../../../components/projects/ProjectShowcaseSection";
 import ProjectFeaturedLinkSection from "../../../components/projects/ProjectFeaturedLinkSection";
 
+/* Spacing Token */
 const sectionSpacing = "mt-20 md:mt-24";
 
+/* Typography Tokens */
 const uiLabelClass =
   "text-[0.9rem] uppercase tracking-[0.18em] text-brand-sand/90 md:text-[0.95rem] lg:text-[1rem]";
 
@@ -21,6 +23,7 @@ const bodyTextClass =
 const pillTextClass =
   "text-[0.9rem] text-brand-cream/85 md:text-[0.95rem] lg:text-[1rem]";
 
+/* Static Project Routes */
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
@@ -32,28 +35,39 @@ export default async function ProjectDetailPage({
 }) {
   const { slug } = await params;
 
+  /* Project Lookup */
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
   return (
+    /* Project Detail Page */
     <main className="min-h-screen bg-brand-black text-brand-cream">
       <div className="mx-auto max-w-6xl px-6 pt-24 pb-28 md:pt-28 md:pb-32">
+        
+        {/* Project Header */}
         <header className="max-w-3xl">
+          
+          {/* Project Year */}
           <p className={uiLabelClass}>{project.year}</p>
 
+          {/* Project Title */}
           <h1 className="mt-4 font-['the-seasons'] text-5xl font-bold leading-[1.1] tracking-wide text-white md:text-6xl md:leading-[1.18]">
             {project.title}
           </h1>
 
+          {/* Header Divider */}
           <div className="mt-6 h-[2px] w-16 bg-brand-terracotta/80" />
 
+          {/* Project Tagline */}
           <p className="mt-6 max-w-2xl text-[1.15rem] italic leading-[1.55] text-brand-cream/85 md:text-[1.35rem] lg:text-[1.55rem]">
             {project.tagline}
           </p>
 
           {project.client || project.meta ? (
+            /* Project Meta */
             <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2">
               {project.client && (
+                /* Client */
                 <div className="flex items-center gap-2.5">
                   <span className={uiLabelClass}>
                     {project.client.label ?? "Client"}:
@@ -61,6 +75,7 @@ export default async function ProjectDetailPage({
 
                   {project.client.logo ? (
                     project.client.url ? (
+                      /* Client Logo Link */
                       <a
                         href={project.client.url}
                         target="_blank"
@@ -76,6 +91,7 @@ export default async function ProjectDetailPage({
                         </div>
                       </a>
                     ) : (
+                      /* Client Logo */
                       <div className="inline-flex items-center opacity-85">
                         <div className="inline-flex h-12 items-center overflow-hidden rounded-md bg-brand-cream/[0.05]">
                           <img
@@ -87,6 +103,7 @@ export default async function ProjectDetailPage({
                       </div>
                     )
                   ) : project.client.url ? (
+                    /* Client Link */
                     <a
                       href={project.client.url}
                       target="_blank"
@@ -97,6 +114,7 @@ export default async function ProjectDetailPage({
                       <FiArrowUpRight className="h-3.5 w-3.5 opacity-70" />
                     </a>
                   ) : (
+                    /* Client Name */
                     <span className={uiTextClass}>
                       {project.client.name}
                     </span>
@@ -105,32 +123,38 @@ export default async function ProjectDetailPage({
               )}
 
               {project.meta && (
+                /* Additional Meta */
                 <span className={uiLabelClass}>{project.meta}</span>
               )}
             </div>
           ) : null}
 
+          {/* Tech Stack */}
           <div className="mt-8 flex flex-wrap gap-3">
             {project.stack.map((item) => {
               const Icon = techIcons[item];
 
               return (
+                /* Stack Pill */
                 <span
                   key={item}
                   className={`inline-flex items-center gap-[0.45rem] rounded-full border border-brand-sand/30 bg-brand-cream/[0.05] px-4 py-2 ${pillTextClass}`}
                 >
                   {Icon ? (
+                    /* Stack Icon */
                     <Icon
                       className="h-[16px] w-[16px] text-brand-sand translate-y-[-0.5px] md:h-[17px] md:w-[17px] lg:h-[18px] lg:w-[18px]"
                       aria-hidden="true"
                     />
                   ) : (
+                    /* Fallback Dot */
                     <span
                       className="h-1.5 w-1.5 rounded-full bg-brand-sand/75"
                       aria-hidden="true"
                     />
                   )}
 
+                  {/* Stack Label */}
                   <span>{item}</span>
                 </span>
               );
@@ -138,6 +162,7 @@ export default async function ProjectDetailPage({
           </div>
         </header>
 
+        {/* Showcase */}
         <div className={sectionSpacing}>
           {project.showcase ? (
             <ProjectShowcaseSection
@@ -147,6 +172,7 @@ export default async function ProjectDetailPage({
           ) : null}
         </div>
 
+        {/* Featured Link */}
         {project.featuredLink ? (
           <ProjectFeaturedLinkSection
             feature={project.featuredLink}
@@ -154,10 +180,12 @@ export default async function ProjectDetailPage({
           />
         ) : null}
 
+        {/* Triptych */}
         {project.layout === "triptych" && project.triptych?.length ? (
           <ProjectTriptychSection project={project} />
         ) : null}
 
+        {/* Overview */}
         <section className={sectionSpacing}>
           <div className="max-w-3xl">
             <p className={uiLabelClass}>Overview</p>
@@ -169,6 +197,7 @@ export default async function ProjectDetailPage({
         </section>
 
         {project.buildNotes?.length ? (
+          /* Build Notes */
           <section className={sectionSpacing}>
             <div className="max-w-3xl">
               <p className={uiLabelClass}>Build & Strategy</p>
@@ -185,6 +214,7 @@ export default async function ProjectDetailPage({
         ) : null}
 
         {project.reflection ? (
+          /* Reflection */
           <section className={sectionSpacing}>
             <div className="max-w-3xl">
               <p className={uiLabelClass}>Reflection</p>
@@ -197,6 +227,7 @@ export default async function ProjectDetailPage({
         ) : null}
 
         {project.links?.length ? (
+          /* Links */
           <section className={sectionSpacing}>
             <div className="max-w-4xl">
               <p className={uiLabelClass}>Links</p>

@@ -25,6 +25,7 @@ import { FaWordpressSimple } from "react-icons/fa6";
 import { TbBrandAdobePremier } from "react-icons/tb";
 import { MdOutline360 } from "react-icons/md";
 import { LiaAdobe } from "react-icons/lia";
+import { PiFileCSharp } from "react-icons/pi";
 
 export const techIcons: Record<string, IconType | undefined> = {
   React: SiReact,
@@ -51,5 +52,5 @@ export const techIcons: Record<string, IconType | undefined> = {
   "Adobe Premiere Pro": TbBrandAdobePremier,
   "360° Imaging": MdOutline360,
   "Adobe Suite": LiaAdobe,
-
+  "C#": PiFileCSharp,
 };

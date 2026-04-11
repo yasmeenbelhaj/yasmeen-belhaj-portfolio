@@ -106,7 +106,9 @@ export default function HomePage() {
   const projectsY = useTransform(heroProgress, [0, 0.45], [140, 0]);
   const heroScale = useTransform(heroProgress, [0, 0.4], [1, 1.75]);
   const restartButtonOpacity = useTransform(projectsY, [140, 110], [1, 0]);
+
   const scrollIndicatorOpacity = useTransform(projectsY, [140, 110], [1, 0]);
+  const scrollBgOpacity = useTransform(projectsY, [140, 135], [0.85, 0]);
 
   return (
     <div className="relative bg-brand-black">
@@ -143,7 +145,12 @@ export default function HomePage() {
               className="pointer-events-none absolute bottom-5 left-1/2 z-20 -translate-x-1/2 sm:bottom-16 lg:bottom-20"
               aria-hidden="true"
             >
-              <div className="flex flex-col items-center rounded-full bg-brand-cream/85 px-5 py-3 backdrop-blur-sm">
+              <motion.div
+                style={{ opacity: scrollBgOpacity }}
+                className="absolute inset-0 rounded-full bg-brand-cream/85 backdrop-blur-sm"
+              />
+
+              <div className="relative flex flex-col items-center px-5 py-3">
                 <span className="text-[10px] uppercase tracking-[0.24em] text-brand-black/70">
                   Scroll
                 </span>
@@ -169,7 +176,6 @@ export default function HomePage() {
             type="button"
             onClick={() => setSketchKey((prev) => prev + 1)}
             className="fixed top-24 right-6 z-50 rounded-full border border-brand-sand/40 bg-brand-cream/80 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-brand-black/70 shadow-md backdrop-blur-sm transition-colors duration-200 hover:bg-brand-rust/90 hover:text-brand-cream"
-            aria-label="Clear Sketch"
           >
             Clear Sketch
           </motion.button>
@@ -203,15 +209,20 @@ export default function HomePage() {
                   </p>
                 </motion.div>
 
+                {/* ✅ FIXED GRID */}
                 <motion.div
                   variants={cardsContainer}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.2 }}
-                  className="mt-14 grid gap-8 sm:grid-cols-2"
+                  className="mt-14 grid gap-8 sm:grid-cols-2 items-stretch"
                 >
                   {projects.map((project) => (
-                    <motion.div key={project.slug} variants={cardVariants}>
+                    <motion.div
+                      key={project.slug}
+                      variants={cardVariants}
+                      className="h-full"
+                    >
                       <ProjectCard project={project} />
                     </motion.div>
                   ))}

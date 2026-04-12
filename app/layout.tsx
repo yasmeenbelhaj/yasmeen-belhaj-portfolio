@@ -8,10 +8,6 @@ import ScrollToTop from "../components/ScrollToTop";
 export const metadata: Metadata = {
   title: "Yasmeen Belhaj",
   description: "Creative Technologist — web, real-time systems, AR/XR.",
-  //icons: {
-    //icon: '/icon-v2.png',
-    //apple: '/apple-icon.png',
-  //},
 };
 
 export const viewport: Viewport = {

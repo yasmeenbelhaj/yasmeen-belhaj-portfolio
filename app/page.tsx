@@ -126,73 +126,74 @@ export default function HomePage() {
     /* Homepage */
     <div className="relative bg-brand-black">
       <div className="relative">
-        
         {/* Hero Scene */}
         <div ref={heroSceneRef} className="relative min-h-[180svh]">
-          
           {/* Fixed Hero Layer */}
           <motion.section
             style={{ opacity: heroOpacity }}
-            className="pointer-events-none fixed top-0 left-0 h-[100svh] w-full overflow-hidden bg-brand-cream"
+            className="pointer-events-none fixed inset-0 w-full overflow-hidden bg-brand-black"
           >
-            {/* P5 Background */}
-            <div className="pointer-events-auto absolute inset-0 z-0">
-              <P5Background key={sketchKey} />
-            </div>
+            {/* Hero Surface */}
+            <div className="absolute inset-0 overflow-hidden">
+              {/* P5 Background */}
+              <div className="pointer-events-auto absolute inset-0 z-0 bg-brand-cream">
+                <P5Background key={sketchKey} />
+              </div>
 
-            {/* Hero Colour Overlay */}
-            <motion.div
-              style={{ opacity: heroColorFade }}
-              className="pointer-events-none absolute inset-0 z-10 bg-brand-rust"
-            />
-
-            {/* Hero Title Block */}
-            <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-6">
-              <motion.div style={{ scale: heroScale }} className="text-center">
-                <h1 className="font-['the-seasons'] text-6xl font-bold tracking-[0.08em] text-brand-black sm:text-6xl lg:text-7xl">
-                  YASMEEN <br className="sm:hidden" />
-                  BELHAJ
-                </h1>
-
-                <p className="mt-5 text-base tracking-[0.08em] text-brand-black/70 sm:text-lg">
-                  Software Engineer | Front-End & Creative Technology
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Scroll Indicator */}
-            <motion.div
-              style={{ opacity: scrollIndicatorOpacity }}
-              className="pointer-events-none absolute bottom-5 left-1/2 z-20 -translate-x-1/2 sm:bottom-16 lg:bottom-20"
-              aria-hidden="true"
-            >
-              {/* Scroll Indicator Background */}
+              {/* Hero Colour Overlay */}
               <motion.div
-                style={{ opacity: scrollBgOpacity }}
-                className="absolute inset-0 rounded-full bg-brand-cream/85 backdrop-blur-sm"
+                style={{ opacity: heroColorFade }}
+                className="pointer-events-none absolute inset-0 z-10 bg-brand-rust"
               />
 
-              {/* Scroll Indicator Content */}
-              <div className="relative flex flex-col items-center px-5 py-3">
-                <span className="text-[10px] uppercase tracking-[0.24em] text-brand-black/70">
-                  Scroll
-                </span>
+              {/* Hero Title Block */}
+              <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-6">
+                <motion.div style={{ scale: heroScale }} className="text-center">
+                  <h1 className="font-['the-seasons'] text-6xl font-bold tracking-[0.08em] text-brand-black sm:text-6xl lg:text-7xl">
+                    YASMEEN <br className="sm:hidden" />
+                    BELHAJ
+                  </h1>
 
-                {/* Scroll Indicator Line */}
-                <div className="mt-2 h-10 w-px overflow-hidden bg-brand-black/15">
-                  <motion.div
-                    className="w-px bg-brand-black/70"
-                    animate={{ y: ["-100%", "100%"] }}
-                    transition={{
-                      duration: 1.4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    style={{ height: "60%" }}
-                  />
-                </div>
+                  <p className="mt-5 text-base tracking-[0.08em] text-brand-black/70 sm:text-lg">
+                    Software Engineer | Front-End & Creative Technology
+                  </p>
+                </motion.div>
               </div>
-            </motion.div>
+
+              {/* Scroll Indicator */}
+              <motion.div
+                style={{ opacity: scrollIndicatorOpacity }}
+                className="pointer-events-none absolute bottom-5 left-1/2 z-20 -translate-x-1/2 sm:bottom-16 lg:bottom-20"
+                aria-hidden="true"
+              >
+                {/* Scroll Indicator Background */}
+                <motion.div
+                  style={{ opacity: scrollBgOpacity }}
+                  className="absolute inset-0 rounded-full bg-brand-cream/85 backdrop-blur-sm"
+                />
+
+                {/* Scroll Indicator Content */}
+                <div className="relative flex flex-col items-center px-5 py-3">
+                  <span className="text-[10px] uppercase tracking-[0.24em] text-brand-black/70">
+                    Scroll
+                  </span>
+
+                  {/* Scroll Indicator Line */}
+                  <div className="mt-2 h-10 w-px overflow-hidden bg-brand-black/15">
+                    <motion.div
+                      className="w-px bg-brand-black/70"
+                      animate={{ y: ["-100%", "100%"] }}
+                      transition={{
+                        duration: 1.4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      style={{ height: "60%" }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.section>
 
           {/* Clear Sketch Button */}
@@ -208,7 +209,7 @@ export default function HomePage() {
           {/* Projects Transition Layer */}
           <motion.section
             style={{ y: skipIntro || forceProjectsTop ? 0 : projectsY }}
-            className="relative z-10 pt-[100svh]"
+            className="relative z-10 pt-[100dvh]"
           >
             {/* Projects Section */}
             <section
@@ -217,7 +218,6 @@ export default function HomePage() {
               className="min-h-[100svh] rounded-t-[2rem] bg-brand-black text-brand-cream"
             >
               <div className="mx-auto max-w-6xl px-6 py-24">
-                
                 {/* Section Intro */}
                 <motion.div
                   variants={sectionIntro}
@@ -247,7 +247,7 @@ export default function HomePage() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.2 }}
-                  className="mt-14 grid gap-8 sm:grid-cols-2 items-stretch"
+                  className="mt-14 grid items-stretch gap-8 sm:grid-cols-2"
                 >
                   {projects.map((project) => (
                     /* Project Card Wrapper */

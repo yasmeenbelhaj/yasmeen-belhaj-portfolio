@@ -32,25 +32,27 @@ export default function AboutSection() {
           {/* Body Content */}
           <div className={`mt-8 space-y-6 ${bodyTextClass}`}>
             <p>
-              I’m a front-end-focused software engineer working across web
-              development, interactive systems, and creative technology.
+              I’m a front-end and interactive developer interested in how
+              digital experiences can feel clear, thoughtful, and engaging.
             </p>
 
             <p>
-              My work combines responsive front-end development, motion, and
-              creative coding to build expressive digital experiences and
-              thoughtful interfaces.
+              My work brings together responsive web development, motion,
+              creative coding, and real-time interactive systems. On the web
+              side, I’ve been working with React, TypeScript, and Next.js. For
+              spatial and immersive projects, I use Unity and C#.
             </p>
 
             <p>
-              I’m particularly interested in interactive systems and real-time
-              experiences, including AR/XR and creative technology projects.
+              I’m especially drawn to projects that organise complex ideas or
+              source material into interfaces people can explore and understand,
+              whether that’s through research-led UX, AR/XR, or evidence-led
+              interaction design.
             </p>
 
             <p>
-              I enjoy translating ideas into structured technical systems that
-              are visually considered, performant, and centred around thoughtful
-              user experience.
+              I like turning early ideas into structured digital systems that
+              are visually considered, usable, and built with care.
             </p>
           </div>
         </motion.div>

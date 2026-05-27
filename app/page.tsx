@@ -156,7 +156,7 @@ export default function HomePage() {
                   </h1>
 
                   <p className="mt-5 text-base tracking-[0.08em] text-brand-black/70 sm:text-lg">
-                    Software Engineer | Front-End & Creative Technology
+                    Front-End & Interactive Developer | Creative Technologist
                   </p>
                 </motion.div>
               </div>

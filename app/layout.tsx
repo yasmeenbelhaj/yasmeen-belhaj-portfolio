@@ -7,7 +7,12 @@ import ScrollToTop from "../components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Yasmeen Belhaj",
-  description: "Creative Technologist — web, real-time systems, AR/XR.",
+  description:
+    "Portfolio of Yasmeen Belhaj, a front-end and interactive developer working with React, TypeScript, Next.js, Unity/C#, and creative technology.",
+  icons: {
+    icon: "/favicon-2026.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
@@ -31,6 +36,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`h-full bg-brand-black ${sourceSans.variable}`}>
       <head>
+        <link rel="icon" href="/favicon-2026.png?v=2" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png?v=2" />
         <link
           rel="preconnect"
           href="https://use.typekit.net"

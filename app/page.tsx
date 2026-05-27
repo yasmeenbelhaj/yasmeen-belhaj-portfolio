@@ -66,11 +66,12 @@ export default function HomePage() {
   /* Skip Hero When Opening Projects Anchor */
   useLayoutEffect(() => {
     if (window.location.hash === "#projects") {
-      setSkipIntro(true);
-
-      requestAnimationFrame(() => {
+      const frame = requestAnimationFrame(() => {
+        setSkipIntro(true);
         projectsTopRef.current?.scrollIntoView({ block: "start" });
       });
+
+      return () => cancelAnimationFrame(frame);
     }
   }, []);
 

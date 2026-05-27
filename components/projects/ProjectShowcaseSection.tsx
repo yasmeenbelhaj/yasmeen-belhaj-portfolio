@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import type { ProjectShowcase } from "../../content/projects";
 
@@ -35,13 +34,6 @@ export default function ProjectShowcaseSection({
   showcase,
   projectTitle,
 }: ProjectShowcaseSectionProps) {
-  const [isMounted, setIsMounted] = useState(false);
-
-  /* Mount State */
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   /* Conditional Render */
   if (showcase.type !== "video" || !showcase.embedUrl) return null;
 
@@ -57,18 +49,16 @@ export default function ProjectShowcaseSection({
       >
         {/* Video Frame */}
         <div className="aspect-video w-full overflow-hidden rounded-[1.25rem] bg-brand-cream/[0.03]">
-          {isMounted ? (
-            /* Embedded Video */
-            <iframe
-              src={showcase.embedUrl}
-              title={showcase.title ?? projectTitle}
-              className="h-full w-full"
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
-          ) : null}
+          {/* Embedded Video */}
+          <iframe
+            src={showcase.embedUrl}
+            title={showcase.title ?? projectTitle}
+            className="h-full w-full"
+            allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
         </div>
       </motion.div>
 

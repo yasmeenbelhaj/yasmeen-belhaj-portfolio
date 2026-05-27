@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import type { ProjectFeature } from "../../content/projects";
@@ -66,13 +67,15 @@ export default function ProjectFeaturedLinkSection({
         viewport={{ once: true, amount: 0.18 }}
         variants={mediaReveal}
       >
-        <div className="relative">
+        <div className="relative h-[420px] md:h-[500px] lg:h-[580px]">
           
           {/* Background Image */}
-          <img
+          <Image
             src={feature.image}
             alt={feature.imageAlt ?? feature.overlayTitle ?? projectTitle}
-            className="h-[420px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] md:h-[500px] lg:h-[580px]"
+            fill
+            sizes="(min-width: 1024px) 1152px, calc(100vw - 48px)"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
 
           {/* Overlay */}

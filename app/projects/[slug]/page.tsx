@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
 
 import { projects } from "../../../content/projects";
@@ -82,22 +83,26 @@ export default async function ProjectDetailPage({
                         rel="noreferrer"
                         className="inline-flex items-center opacity-85 transition-opacity duration-300 hover:opacity-100"
                       >
-                        <div className="inline-flex h-12 items-center overflow-hidden rounded-md bg-brand-cream/[0.05]">
-                          <img
+                        <div className="relative inline-flex h-12 w-32 items-center overflow-hidden rounded-md bg-brand-cream/[0.05]">
+                          <Image
                             src={project.client.logo}
                             alt={project.client.name}
-                            className="h-full w-auto object-contain grayscale"
+                            fill
+                            sizes="128px"
+                            className="object-contain grayscale"
                           />
                         </div>
                       </a>
                     ) : (
                       /* Client Logo */
                       <div className="inline-flex items-center opacity-85">
-                        <div className="inline-flex h-12 items-center overflow-hidden rounded-md bg-brand-cream/[0.05]">
-                          <img
+                        <div className="relative inline-flex h-12 w-32 items-center overflow-hidden rounded-md bg-brand-cream/[0.05]">
+                          <Image
                             src={project.client.logo}
                             alt={project.client.name}
-                            className="h-full w-auto object-contain grayscale"
+                            fill
+                            sizes="128px"
+                            className="object-contain grayscale"
                           />
                         </div>
                       </div>

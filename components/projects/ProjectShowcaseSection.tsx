@@ -34,6 +34,8 @@ export default function ProjectShowcaseSection({
   showcase,
   projectTitle,
 }: ProjectShowcaseSectionProps) {
+  const isPortrait = showcase.orientation === "portrait";
+
   /* Conditional Render */
   if (showcase.type !== "video" || !showcase.embedUrl) return null;
 
@@ -48,12 +50,18 @@ export default function ProjectShowcaseSection({
         variants={mediaReveal}
       >
         {/* Video Frame */}
-        <div className="aspect-video w-full overflow-hidden rounded-[1.25rem] bg-brand-cream/[0.03]">
+        <div
+          className={
+            isPortrait
+              ? "mx-auto aspect-[9/16] max-h-[78vh] w-full max-w-sm overflow-hidden rounded-[1.25rem] bg-brand-cream/[0.03]"
+              : "aspect-video w-full overflow-hidden rounded-[1.25rem] bg-brand-cream/[0.03]"
+          }
+        >
           {/* Embedded Video */}
           <iframe
             src={showcase.embedUrl}
             title={showcase.title ?? projectTitle}
-            className="h-full w-full"
+            className={isPortrait ? "h-full w-full scale-[1.02]" : "h-full w-full"}
             allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
             allowFullScreen
             loading="lazy"
@@ -64,7 +72,7 @@ export default function ProjectShowcaseSection({
 
       {showcase.caption ? (
         /* Showcase Caption */
-        <div className="mt-6 max-w-3xl">
+        <div className="mx-auto mt-6 max-w-3xl text-center">
           <p className={bodyTextClass}>{showcase.caption}</p>
         </div>
       ) : null}

@@ -21,6 +21,7 @@ export type ProjectClient = {
 
 export type ProjectShowcase = {
   type: "video" | "image";
+  orientation?: "landscape" | "portrait";
   title?: string;
   src?: string;
   embedUrl?: string;
@@ -65,13 +66,102 @@ export type Project = {
 /* Project Data */
 
 export const projects: Project[] = [
+
+  /* Visualising Truth Project */
+  {
+    slug: "visualising-truth",
+    title: "Visualising Truth: Interactive Spatial Reconstruction",
+    tagline:
+      "A Unity-based spatial reconstruction exploring how fragmented visual evidence can be organised into an ethical, inspectable interface.",
+    year: "2026",
+    meta: "Unity • Spatial UX • Evidence Interface",
+    stack: ["Unity", "C#", "Maya", "Spatial UX", "Media Systems"],
+    type: "Research Project",
+
+    showcase: {
+      type: "video",
+      title: "Project Demo",
+      embedUrl: "https://player.vimeo.com/video/1196156444",
+      caption:
+        "A walkthrough of the Visualising Truth interface, showing the spatial reconstruction, camera transitions, route progression, and layered evidence system.",
+    },
+
+    overview:
+      "Visualising Truth is an interactive spatial reconstruction project exploring how fragmented visual evidence can be organised into a clearer and more ethically responsible digital experience. Built in Unity, the project examines a contested real-world event through six linked moments, a shared bird’s-eye analytical state, persistent route progression, local scene views, and layered text, image, and video evidence. Rather than claiming to produce a definitive reconstruction, the project frames spatial interaction as a way to make relationships between source material, sequence, movement, and context more inspectable.",
+
+    buildNotes: [
+      "The experience is structured around six spatial-temporal moments, guiding users from contextual framing into a reconstruction sequence and then into a separate reflective closing state.",
+      "I developed a shared bird’s-eye transition state and persistent route system so each local scene remains connected to the wider event sequence rather than becoming an isolated fragment.",
+      "Camera-led transitions move between analytical overview and local scene detail, using movement to communicate continuity, escalation, transfer, and aftermath rather than treating animation as decoration.",
+      "A layered evidence interface combines right-side moment panels, tabbed evidence cards, in-scene markers, and a reusable media overlay for text, image, and video sources.",
+      "The project uses abstraction, restrained interface design, content warnings, and optional media access to support ethical engagement with sensitive material without forcing graphic content on the user.",
+      "I resolved built-application video playback issues by moving media into StreamingAssets, assigning video textures directly to RawImage components, and refining aspect-ratio handling for portrait and landscape media.",
+    ],
+
+    reflection:
+      "This project helped me connect front-end thinking with real-time interaction design, research-led UX, and media ethics. It pushed me to think carefully about structure, clarity, and responsibility: not just how an interface looks, but how it guides attention, communicates uncertainty, supports understanding, and handles sensitive source material with care.",
+
+    links: [
+      {
+        label: "GitHub Repo",
+        href: "https://github.com/yasmeenbelhaj/Visualising_Truth",
+      },
+    ],
+  },
+
+  /* Palestine: Lit by Loss Project */
+  {
+    slug: "palestine-lit-by-loss",
+    title: "Palestine: Lit by Loss",
+    tagline:
+      "A mobile AR candlelight vigil using real-world datasets to make names, numbers, and loss visible in physical space.",
+    year: "2025",
+    meta: "AR • Data Visualisation • Interactive Systems",
+    stack: ["Unity", "C#", "AR Foundation", "Data Visualisation"],
+    type: "Independent Project",
+
+    showcase: {
+      type: "video",
+      orientation: "portrait",
+      title: "Project Demo",
+      embedUrl: "https://player.vimeo.com/video/1142112585",
+      caption:
+        "A project demo showing the AR map, region selection, generated candlelight vigil, and name-based data interaction.",
+    },
+
+    overview:
+      "Palestine: Lit by Loss is a mobile augmented-reality project exploring how real-world datasets can be translated into a quiet, spatial act of remembrance. Built with Unity and AR Foundation, the experience uses data from Tech for Palestine to generate an AR candlelight vigil. Users can select regions on a 3D map, view child death toll information, and, within the Gaza region, see candles generated from the number of child deaths while viewing names and details through a separate dataset feature.",
+
+    buildNotes: [
+      "I created the 3D Palestine map model using Adobe Illustrator and Autodesk Maya, then brought it into Unity as the central spatial interface for the AR experience.",
+      "The project uses Tech for Palestine datasets to connect regional death toll information with generated AR content, including candles instantiated from the child death count in Gaza.",
+      "I developed performance-aware object generation using object pooling and staggered spawning so the AR scene could present many candle objects without overwhelming the application.",
+      "Interaction design focused on keeping the experience clear and respectful, with region selection, UI prompts, name/detail panels, and responsive map behaviour that rotates toward the camera.",
+      "The selected regions scale and gently move to give users feedback without disrupting the quiet tone of the experience.",
+      "The visual approach was intentionally minimal, using immersive technology to support witnessing, reflection, and memory rather than spectacle.",
+    ],
+
+    reflection:
+      "This project helped me think about AR as more than a novelty layer. It showed me how spatial media can change the way people encounter information, especially when data represents real lives rather than abstract numbers. It also built useful foundations for later Unity projects involving interaction systems, sensitive subject matter, performance constraints, and data-led visual experiences.",
+
+    links: [
+      {
+        label: "GitHub Repo",
+        href: "https://github.com/yasmeenbelhaj/Palestine_Lit_By_Loss",
+      },
+      {
+        label: "Dataset Source",
+        href: "https://data.techforpalestine.org/docs/datasets/",
+      },
+    ],
+  },
   
   /* Generative Drawing Triptych Project */
   {
     slug: "generative-drawing-triptych",
     title: "Generative Drawing Triptych",
     tagline:
-      "A three-part p5.js landscape series using geometric forms, layered colour, and early creative coding experiments.",
+      "A three-part p5.js landscape series exploring geometric form, layered colour, procedural repetition, and simple interaction.",
     year: "2021",
     meta: "Creative Coding • Generative Drawing",
     stack: ["JavaScript", "p5.js", "HTML", "CSS"],
@@ -79,7 +169,7 @@ export const projects: Project[] = [
     layout: "triptych",
 
     overview:
-      "This project presents a generative drawing series created for an introductory creative coding module. The brief asked for three distinct p5.js drawings, with at least two static outcomes and the option for interaction. I approached this as a triptych of landscape scenes: Snowy Mountains, City Skyline, and Forest Cabin. Each piece explores geometric forms, bold colour, and simple generative systems, while maintaining a consistent visual language across the series.",
+      "This project presents an early creative coding series built in p5.js. I approached the brief as a triptych of landscape scenes: Snowy Mountains, City Skyline, and Forest Cabin. Each piece uses simple 2D geometry, layered colour, repeated forms, and small generative systems to create a distinct scene while maintaining a consistent visual language across the set.",
 
     triptych: [
       {
@@ -109,11 +199,15 @@ export const projects: Project[] = [
     ],
 
     buildNotes: [
-      "Each scene was built from simple 2D shapes, with reusable functions making it easier to repeat and reposition elements across the composition.",
-      "To create the skies, I used repeated rectangles and colour arrays to build gradual transitions, then adapted that approach for different times of day.",
-      "I also tested more than one way of generating stars, including a basic loop and a class-based array setup, to understand how each method affected the final result.",
+      "Each scene was built from simple 2D shapes, with reusable drawing functions helping me repeat, reposition, and adapt elements across each composition.",
+      "To create the skies, I used repeated rectangles and colour arrays to build gradual transitions, then adjusted that system for different times of day and atmosphere.",
+      "I explored different ways of generating repeated elements, including loop-based stars and a class-based array setup, to understand how structure affected the final visual result.",
+      "The Forest Cabin scene introduced small interaction states, including keyboard-triggered sky effects and a clickable cabin window light.",
       "The visual direction was influenced by Saskia Freeke’s use of bold colour and geometric form, which helped guide the style of the series as a whole.",
     ],
+
+    reflection:
+      "This project was an early step in learning how code could be used as a visual material. It helped me understand the value of reusable functions, procedural repetition, and interaction states, while also showing how technical constraints can become part of a project’s visual style.",
   },
 
   /* William Champion's Grotto Project*/
@@ -138,7 +232,7 @@ export const projects: Project[] = [
       title: "Showcase Video",
       embedUrl: "https://player.vimeo.com/video/1179406322",
       caption:
-        "A showcase film presenting the interactive tour and demonstrating how users explore the grotto digitally.",
+        "A showcase video introducing the project, demonstrating the 360° walkthrough on a laptop, and showing VR headset screen capture from the tour experience.",
     },
 
     featuredLink: {
@@ -155,13 +249,14 @@ export const projects: Project[] = [
     },
 
     overview:
-      "This project focused on digitally documenting William Champion’s Grotto, a Grade II listed heritage site in Warmley that is rarely open to the public. Working in collaboration with South Gloucestershire Council, the aim was to create an interactive digital experience that allows users to explore the space remotely, while also preserving it as a long-term record as the structure continues to deteriorate. The final outcome combines a 360° tour with a supporting showcase video to communicate both the functionality and the atmosphere of the space.",
+      "This project focused on digitally documenting William Champion’s Grotto, a Grade II listed heritage site in Warmley that is rarely open to the public. Working as part of a team in collaboration with South Gloucestershire Council, I helped create an interactive 360° experience that allows people to explore the space remotely while preserving a digital record of the site. The final outcome combines a navigable 360° walkthrough, process documentation, and a showcase video communicating both the functionality and atmosphere of the experience.",
 
     buildNotes: [
       "The project required detailed pre-production planning, including mapping navigation points, defining touchpoints, and preparing a structured shot list for capturing the grotto environment.",
       "On-site production presented technical challenges due to low light and lack of power. Battery-powered LED panels were used to illuminate the space while maintaining consistent image quality.",
       "360° imagery was captured and assembled into an interactive tour using Panoee, allowing users to navigate the grotto through a series of connected viewpoints.",
       "A showcase video was developed to communicate the experience of the tour. This included storyboard planning, directing, filming, and editing in Adobe Premiere Pro.",
+      "I also designed the supporting WordPress layout for the process blog, structuring the project documentation so the research, production stages, and final walkthrough could be presented clearly.",
       "User testing was conducted to refine navigation, usability, and clarity of interaction within the final experience.",
     ],
 

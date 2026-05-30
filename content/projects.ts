@@ -195,11 +195,11 @@ export const projects: Project[] = [
     },
 
     overview:
-      "Palestine: Lit by Loss is a mobile augmented-reality project exploring how real-world datasets can be translated into a quiet, spatial act of remembrance. Built with Unity and AR Foundation, the experience uses data from Tech for Palestine to generate an AR candlelight vigil. Users can select regions on a 3D map, view child death toll information, and, within the Gaza region, see candles generated from the number of child deaths while viewing names and details through a separate dataset feature.",
+      "Palestine: Lit by Loss is a mobile augmented-reality project exploring how real-world datasets can be translated into a quiet, spatial act of remembrance. Built with Unity and AR Foundation, the experience uses data from Tech for Palestine to generate an AR candlelight vigil. Users can select regions on a 3D map, view child death toll information, and see candles generated from the number of child deaths in each region. The Gaza region also includes a separate Know Their Names feature, which displays names of deceased children from a different dataset.",
 
     buildNotes: [
-      "I created the 3D Palestine map model using Adobe Illustrator and Autodesk Maya, then brought it into Unity as the central spatial interface for the AR experience.",
-      "The project uses Tech for Palestine datasets to connect regional death toll information with generated AR content, including candles instantiated from the child death count in Gaza.",
+      "I created the 3D Palestine map model using QGIS, Adobe Illustrator, and Autodesk Maya, then brought it into Unity as the central spatial interface for the AR experience.",
+      "The project uses Tech for Palestine datasets to connect regional death toll information with generated AR content, including candles instantiated from each selected region’s child death count.",
       "I developed performance-aware object generation using object pooling and staggered spawning so the AR scene could present many candle objects without overwhelming the application.",
       "Interaction design focused on keeping the experience clear and respectful, with region selection, UI prompts, name/detail panels, and responsive map behaviour that rotates toward the camera.",
       "The selected regions scale and gently move to give users feedback without disrupting the quiet tone of the experience.",

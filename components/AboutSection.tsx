@@ -39,8 +39,9 @@ export default function AboutSection() {
             <p>
               My work brings together responsive web development, motion,
               creative coding, and real-time interactive systems. On the web
-              side, I’ve been working with React, TypeScript, and Next.js. For
-              spatial and immersive projects, I use Unity and C#.
+              side, I’ve been working with React, TypeScript, Next.js,
+              Three.js, and p5.js. For spatial and immersive projects, I use
+              Unity and C#.
             </p>
 
             <p>

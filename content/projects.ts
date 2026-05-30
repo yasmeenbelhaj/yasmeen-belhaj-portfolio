@@ -109,6 +109,71 @@ export const projects: Project[] = [
     ],
   },
 
+  /* William Champion's Grotto Project*/
+  {
+    slug: "william-champions-grotto",
+    title: "William Champion’s Grotto: 360° Walkthrough",
+    tagline:
+      "Opening up a rarely accessible historic site through an interactive 360° walkthrough.",
+    year: "2026",
+    stack: ["Panoee", "360° Imaging", "Adobe Premiere Pro", "WordPress"],
+    type: "Client Project",
+
+    client: {
+      name: "South Gloucestershire Council",
+      url: "https://www.southglos.gov.uk",
+      label: "Client",
+      logo: "/images/south_glos_logo.png",
+    },
+
+    showcase: {
+      type: "video",
+      title: "Showcase Video",
+      embedUrl: "https://player.vimeo.com/video/1179406322",
+      caption:
+        "A showcase video introducing the project, demonstrating the 360° walkthrough on a laptop, and showing VR headset screen capture from the tour experience.",
+    },
+
+    featuredLink: {
+      eyebrow: "Main Deliverable",
+      href: "https://tour.panoee.net/699493ada0d83f6b1c80c85e/699497cca0d83f7e3c80c8ed",
+      description:
+        "A fully interactive 360° walkthrough designed to make the grotto accessible beyond its limited public openings.",
+      note: "Opens in a new tab",
+      image: "/images/grotto.jpg",
+      imageAlt: "William Champion’s Grotto",
+      overlayTitle: "William Champion’s Grotto",
+      overlaySubtitle: "360° Walkthrough Experience",
+      ctaLabel: "Begin the walkthrough",
+    },
+
+    overview:
+      "This project focused on digitally documenting William Champion’s Grotto, a Grade II listed heritage site in Warmley that is rarely open to the public. Working as part of a team in collaboration with South Gloucestershire Council, I helped create an interactive 360° experience that allows people to explore the space remotely while preserving a digital record of the site. The final outcome combines a navigable 360° walkthrough, process documentation, and a showcase video communicating both the functionality and atmosphere of the experience.",
+
+    buildNotes: [
+      "The project required detailed pre-production planning, including mapping navigation points, defining touchpoints, and preparing a structured shot list for capturing the grotto environment.",
+      "On-site production presented technical challenges due to low light and lack of power. Battery-powered LED panels were used to illuminate the space while maintaining consistent image quality.",
+      "360° imagery was captured and assembled into an interactive tour using Panoee, allowing users to navigate the grotto through a series of connected viewpoints.",
+      "A showcase video was developed to communicate the experience of the tour. This included storyboard planning, directing, filming, and editing in Adobe Premiere Pro.",
+      "I also designed the supporting WordPress layout for the process blog, structuring the project documentation so the research, production stages, and final walkthrough could be presented clearly.",
+      "User testing was conducted to refine navigation, usability, and clarity of interaction within the final experience.",
+    ],
+
+    reflection:
+      "This project strengthened my ability to lead creative direction within a real client context, while also managing production constraints and team workflow. Working on-site in challenging conditions required adaptability and clear decision-making, particularly when balancing efficiency with quality. It also pushed me to develop confidence in directing and video production, an area I had previously been less comfortable with. Overall, the project reinforced the importance of communication, planning, and flexibility when delivering a professional outcome for a client.",
+
+    links: [
+      {
+        label: "Process Blog",
+        href: "https://desgrotto.wordpress.com",
+      },
+      {
+        label: "360° Walkthrough",
+        href: "https://tour.panoee.net/699493ada0d83f6b1c80c85e/699497cca0d83f7e3c80c8ed",
+      },
+    ],
+  },
+
   /* Palestine: Lit by Loss Project */
   {
     slug: "palestine-lit-by-loss",
@@ -208,70 +273,5 @@ export const projects: Project[] = [
 
     reflection:
       "This project was an early step in learning how code could be used as a visual material. It helped me understand the value of reusable functions, procedural repetition, and interaction states, while also showing how technical constraints can become part of a project’s visual style.",
-  },
-
-  /* William Champion's Grotto Project*/
-  {
-    slug: "william-champions-grotto",
-    title: "William Champion’s Grotto: 360° Walkthrough",
-    tagline:
-      "Opening up a rarely accessible historic site through an interactive 360° walkthrough.",
-    year: "2026",
-    stack: ["Panoee", "360° Imaging", "Adobe Premiere Pro", "WordPress"],
-    type: "Client Project",
-
-    client: {
-      name: "South Gloucestershire Council",
-      url: "https://www.southglos.gov.uk",
-      label: "Client",
-      logo: "/images/south_glos_logo.png",
-    },
-
-    showcase: {
-      type: "video",
-      title: "Showcase Video",
-      embedUrl: "https://player.vimeo.com/video/1179406322",
-      caption:
-        "A showcase video introducing the project, demonstrating the 360° walkthrough on a laptop, and showing VR headset screen capture from the tour experience.",
-    },
-
-    featuredLink: {
-      eyebrow: "Main Deliverable",
-      href: "https://tour.panoee.net/699493ada0d83f6b1c80c85e/699497cca0d83f7e3c80c8ed",
-      description:
-        "A fully interactive 360° walkthrough designed to make the grotto accessible beyond its limited public openings.",
-      note: "Opens in a new tab",
-      image: "/images/grotto.jpg",
-      imageAlt: "William Champion’s Grotto",
-      overlayTitle: "William Champion’s Grotto",
-      overlaySubtitle: "360° Walkthrough Experience",
-      ctaLabel: "Begin the walkthrough",
-    },
-
-    overview:
-      "This project focused on digitally documenting William Champion’s Grotto, a Grade II listed heritage site in Warmley that is rarely open to the public. Working as part of a team in collaboration with South Gloucestershire Council, I helped create an interactive 360° experience that allows people to explore the space remotely while preserving a digital record of the site. The final outcome combines a navigable 360° walkthrough, process documentation, and a showcase video communicating both the functionality and atmosphere of the experience.",
-
-    buildNotes: [
-      "The project required detailed pre-production planning, including mapping navigation points, defining touchpoints, and preparing a structured shot list for capturing the grotto environment.",
-      "On-site production presented technical challenges due to low light and lack of power. Battery-powered LED panels were used to illuminate the space while maintaining consistent image quality.",
-      "360° imagery was captured and assembled into an interactive tour using Panoee, allowing users to navigate the grotto through a series of connected viewpoints.",
-      "A showcase video was developed to communicate the experience of the tour. This included storyboard planning, directing, filming, and editing in Adobe Premiere Pro.",
-      "I also designed the supporting WordPress layout for the process blog, structuring the project documentation so the research, production stages, and final walkthrough could be presented clearly.",
-      "User testing was conducted to refine navigation, usability, and clarity of interaction within the final experience.",
-    ],
-
-    reflection:
-      "This project strengthened my ability to lead creative direction within a real client context, while also managing production constraints and team workflow. Working on-site in challenging conditions required adaptability and clear decision-making, particularly when balancing efficiency with quality. It also pushed me to develop confidence in directing and video production, an area I had previously been less comfortable with. Overall, the project reinforced the importance of communication, planning, and flexibility when delivering a professional outcome for a client.",
-
-    links: [
-      {
-        label: "Process Blog",
-        href: "https://desgrotto.wordpress.com",
-      },
-      {
-        label: "360° Walkthrough",
-        href: "https://tour.panoee.net/699493ada0d83f6b1c80c85e/699497cca0d83f7e3c80c8ed",
-      },
-    ],
   },
 ];

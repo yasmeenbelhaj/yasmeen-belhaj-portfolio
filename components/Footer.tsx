@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { FiArrowUpRight } from "react-icons/fi";
 
 /* Typography Tokens */
@@ -11,6 +14,10 @@ const footerLinkClass =
   "group inline-flex items-center gap-1.5 text-[0.82rem] uppercase tracking-[0.18em] text-white/70 transition-colors duration-200 hover:text-brand-sand md:text-[0.86rem] lg:text-[0.9rem]";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/business-card")) return null;
+
   return (
     /* Footer */
     <footer id="footer" className="mt-28 bg-brand-black text-white">

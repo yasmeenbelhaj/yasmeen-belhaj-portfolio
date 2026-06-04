@@ -3,6 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import { FiArrowUpRight, FiDownload, FiMail } from "react-icons/fi";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import type { IconType } from "react-icons";
 
 /* Motion Tokens */
 const smoothEase = [0.22, 1, 0.36, 1] as const;
@@ -49,7 +50,7 @@ type ContactItem = {
   label: string;
   value: string;
   href: string;
-  icon: React.ElementType;
+  icon: IconType;
   external?: boolean;
 };
 
@@ -57,8 +58,8 @@ type ContactItem = {
 const contactItems: ContactItem[] = [
   {
     label: "Email",
-    value: "yasmeen.belhaj@gmail.com",
-    href: "mailto:yasmeen.belhaj@gmail.com",
+    value: "hello@yasmeenbelhaj.com",
+    href: "mailto:hello@yasmeenbelhaj.com",
     icon: FiMail,
   },
   {
@@ -119,7 +120,7 @@ export default function ContactSection() {
           <p className={`mt-8 max-w-[46rem] ${bodyTextClass}`}>
             I’m currently seeking graduate front-end, UI engineering, and
             interactive developer opportunities. For roles, collaborations, or
-            conversation, feel free to get&nbsp;in&nbsp;touch.
+            conversations, feel free to get&nbsp;in&nbsp;touch.
           </p>
         </motion.div>
 

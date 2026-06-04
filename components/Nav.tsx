@@ -68,6 +68,8 @@ export default function Nav() {
     };
   }, [mobileOpen]);
 
+  if (pathname?.startsWith("/business-card")) return null;
+
   /* Smooth scroll handler */
   const scrollToSection = (targetHash: string) => {
     if (targetHash === "#projects") {

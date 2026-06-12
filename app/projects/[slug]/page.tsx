@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { FiArrowUpRight } from "react-icons/fi";
 
 import { projects } from "../../../content/projects";
@@ -27,6 +28,61 @@ const pillTextClass =
 /* Static Project Routes */
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
+}
+
+const projectImages: Record<string, string> = {
+  "visualising-truth": "/images/visualising_truth_card.png",
+  "william-champions-grotto": "/images/grotto.jpg",
+  "palestine-lit-by-loss": "/images/palestine_lit_by_loss.png",
+  "generative-drawing-triptych": "/images/triptych_card.png",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((item) => item.slug === slug);
+
+  if (!project) return {};
+
+  const url = `/projects/${project.slug}`;
+  const image = projectImages[project.slug];
+
+  return {
+    title: project.title,
+    description: project.tagline,
+    keywords: [
+      project.title,
+      project.type,
+      ...(project.meta?.split(" • ") ?? []),
+      ...project.stack,
+    ],
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: "article",
+      url,
+      title: `${project.title} | Yasmeen Belhaj`,
+      description: project.tagline,
+      images: image
+        ? [
+            {
+              url: image,
+              alt: project.title,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | Yasmeen Belhaj`,
+      description: project.tagline,
+      images: image ? [image] : undefined,
+    },
+  };
 }
 
 export default async function ProjectDetailPage({
@@ -66,7 +122,12 @@ export default async function ProjectDetailPage({
 
           {project.client || project.meta ? (
             /* Project Meta */
-            <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <div className="mt-8 space-y-4">
+              {project.meta && (
+                /* Additional Meta */
+                <p className={uiLabelClass}>{project.meta}</p>
+              )}
+
               {project.client && (
                 /* Client */
                 <div className="flex items-center gap-2.5">
@@ -125,11 +186,6 @@ export default async function ProjectDetailPage({
                     </span>
                   )}
                 </div>
-              )}
-
-              {project.meta && (
-                /* Additional Meta */
-                <span className={uiLabelClass}>{project.meta}</span>
               )}
             </div>
           ) : null}

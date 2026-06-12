@@ -32,28 +32,28 @@ export default function AboutSection() {
           {/* Body Content */}
           <div className={`mt-8 space-y-6 ${bodyTextClass}`}>
             <p>
-              I’m a front-end and interactive developer interested in how
-              digital experiences can feel clear, thoughtful, and engaging.
+              I’m a front-end engineer and interactive systems designer
+              interested in building digital experiences that feel clear,
+              thoughtful and engaging.
             </p>
 
             <p>
-              My work brings together responsive web development, motion,
-              creative coding, and real-time interactive systems. On the web
-              side, I’ve been working with React, TypeScript, Next.js,
-              Three.js, and p5.js. For spatial and immersive projects, I use
-              Unity and C#.
+              My work spans responsive web applications, real-time interaction
+              and spatial digital experiences. I enjoy translating complex
+              information and source material into intuitive interfaces through
+              research-led UX, interaction design and technical implementation.
             </p>
 
             <p>
-              I’m especially drawn to projects that organise complex ideas or
-              source material into interfaces people can explore and understand,
-              whether that’s through research-led UX, AR/XR, or evidence-led
-              interaction design.
+              I’m especially drawn to data-driven, spatial and immersive
+              projects that help people explore information, understand
+              relationships and engage with ideas in new ways.
             </p>
 
             <p>
-              I like turning early ideas into structured digital systems that
-              are visually considered, usable, and built with care.
+              I bring a structured, analytical approach to development, shaped
+              by professional experience in problem solving and stakeholder
+              communication.
             </p>
           </div>
         </motion.div>

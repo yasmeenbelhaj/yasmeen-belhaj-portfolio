@@ -15,9 +15,9 @@ const skillGroups: {
   skills: Skill[];
 }[] = [
   {
-    title: "Front-End",
+    title: "Front-End Engineering",
     description:
-      "Responsive interfaces, component-based development, and modern web tooling.",
+      "Responsive interfaces, component-based architecture, API integration and modern web development focused on usability, performance, and maintainability.",
     skills: [
       { name: "React" },
       { name: "Next.js" },
@@ -26,38 +26,33 @@ const skillGroups: {
       { name: "Tailwind CSS" },
       { name: "HTML" },
       { name: "CSS" },
+      { name: "Framer Motion" },
     ],
   },
   {
-    title: "Creative Technology",
+    title: "Interactive Systems & 3D",
     description:
-      "Motion, creative coding, 3D, and real-time interactive systems.",
+      "Spatial computing, real-time interaction, information visualisation, and immersive digital experiences across web, AR, and 3D environments.",
     skills: [
-      { name: "Framer Motion" },
-      { name: "p5.js" },
+      { name: "Unity" },
+      { name: "C#" },
       { name: "Three.js" },
       { name: "WebGL" },
-      { name: "Unity" },
       { name: "AR Foundation" },
-      { name: "Interactive Design" },
-      { name: "Creative Coding" },
+      { name: "Maya" },
+      { name: "Blender" },
+      { name: "p5.js" },
     ],
   },
   {
-    title: "Tools & Workflow",
+    title: "Development Workflow",
     description:
-      "Design, version control, deployment, and supporting technical workflows.",
+      "Version control, deployment, stakeholder collaboration and iterative development practices supporting user-centred digital experiences.",
     skills: [
       { name: "Git" },
       { name: "GitHub" },
       { name: "Figma" },
       { name: "Netlify" },
-      { name: "VS Code" },
-      { name: "Adobe Suite" },
-      { name: "Blender" },
-      { name: "Maya" },
-      { name: "Python" },
-      { name: "C#" },
     ],
   },
 ];
@@ -136,9 +131,8 @@ export default function SkillsSection() {
 
           {/* Section Description */}
           <p className={`mt-8 ${bodyTextClass}`}>
-            A selection of the technologies, tools, and creative systems I use
-            across front-end development, interactive experiences, and real-time
-            work.
+            A selection of the technologies and tools I use to build front-end
+            applications, interactive systems and spatial digital experiences.
           </p>
         </motion.div>
 

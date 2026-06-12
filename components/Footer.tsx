@@ -39,7 +39,7 @@ export default function Footer() {
             </p>
 
             <p className={cardLabelClass}>
-              Front-End & Interactive Developer | Creative Technologist
+              Front-End Engineer | Interactive Systems Designer
             </p>
           </div>
 

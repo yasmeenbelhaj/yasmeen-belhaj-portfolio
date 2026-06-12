@@ -5,10 +5,62 @@ import Footer from "../components/Footer";
 import { Source_Sans_3 } from "next/font/google";
 import ScrollToTop from "../components/ScrollToTop";
 
+const siteUrl = "https://yasmeenbelhaj.com";
+const siteDescription =
+  "Portfolio of Yasmeen Belhaj, a front-end engineer and interactive systems designer building responsive React applications and data-driven spatial experiences.";
+
 export const metadata: Metadata = {
-  title: "Yasmeen Belhaj",
-  description:
-    "Portfolio of Yasmeen Belhaj, a front-end and interactive developer working with React, TypeScript, Next.js, Unity/C#, and creative technology.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default:
+      "Yasmeen Belhaj | Front-End Engineer & Interactive Systems Designer",
+    template: "%s | Yasmeen Belhaj",
+  },
+  description: siteDescription,
+  applicationName: "Yasmeen Belhaj Portfolio",
+  authors: [{ name: "Yasmeen Belhaj", url: siteUrl }],
+  creator: "Yasmeen Belhaj",
+  publisher: "Yasmeen Belhaj",
+  keywords: [
+    "Yasmeen Belhaj",
+    "front-end engineer",
+    "interactive systems designer",
+    "UI engineer",
+    "React developer",
+    "Next.js developer",
+    "TypeScript",
+    "Unity",
+    "spatial UX",
+    "data visualisation",
+    "creative technology",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    title:
+      "Yasmeen Belhaj | Front-End Engineer & Interactive Systems Designer",
+    description: siteDescription,
+    siteName: "Yasmeen Belhaj Portfolio",
+    locale: "en_GB",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Yasmeen Belhaj, Front-End Engineer and Interactive Systems Designer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Yasmeen Belhaj | Front-End Engineer & Interactive Systems Designer",
+    description: siteDescription,
+    images: ["/opengraph-image"],
+  },
   icons: {
     icon: "/favicon-2026.png",
     apple: "/apple-icon.png",
@@ -33,6 +85,54 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: "Yasmeen Belhaj",
+        url: siteUrl,
+        image: `${siteUrl}/images/about-portrait.jpg`,
+        jobTitle: [
+          "Front-End Engineer",
+          "Interactive Systems Designer",
+        ],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Bristol",
+          addressCountry: "GB",
+        },
+        sameAs: [
+          "https://github.com/yasmeenbelhaj",
+          "https://www.linkedin.com/in/yasmeenbelhaj",
+        ],
+        knowsAbout: [
+          "Front-End Engineering",
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Interactive Systems",
+          "Unity",
+          "Spatial UX",
+          "Data Visualisation",
+          "Information Design",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: "Yasmeen Belhaj Portfolio",
+        description: siteDescription,
+        inLanguage: "en-GB",
+        author: {
+          "@id": `${siteUrl}/#person`,
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="en" className={`h-full bg-brand-black ${sourceSans.variable}`}>
       <head>
@@ -49,6 +149,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="stylesheet" href="https://use.typekit.net/dpt5drr.css" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </head>
 
       <body className="flex min-h-[100dvh] flex-col bg-brand-black font-[var(--font-body)] text-white antialiased">

@@ -118,9 +118,10 @@ export default function ContactSection() {
 
           {/* Section Description */}
           <p className={`mt-8 max-w-[46rem] ${bodyTextClass}`}>
-            I’m currently seeking graduate front-end, UI engineering, and
-            interactive developer opportunities. For roles, collaborations, or
-            conversations, feel free to get&nbsp;in&nbsp;touch.
+            I’m currently seeking graduate opportunities in front-end
+            engineering, product development and interactive systems. If you’d
+            like to discuss a role, project or collaboration, I’d love to hear
+            from you.
           </p>
         </motion.div>
 
@@ -191,8 +192,7 @@ export default function ContactSection() {
             <p
               className={`mt-4 max-w-[22rem] ${secondaryTextClass} text-brand-cream/80`}
             >
-              A quick look at my experience, technical skills, and selected
-              project work.
+              Experience, technical skills and selected project work.
             </p>
 
             {/* CV Actions */}

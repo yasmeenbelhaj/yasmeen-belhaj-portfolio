@@ -81,7 +81,7 @@ export const projects: Project[] = [
     showcase: {
       type: "video",
       title: "Project Demo",
-      embedUrl: "https://player.vimeo.com/video/1196156444",
+      embedUrl: "https://www.youtube.com/embed/EolRXYWnLg4",
       caption:
         "A walkthrough of the Visualising Truth interface, showing the spatial reconstruction, camera transitions, route progression, and layered evidence system.",
     },
